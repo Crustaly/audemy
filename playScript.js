@@ -10,7 +10,7 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 //change mode and clickable
-var roundCount = 1;
+var roundCount = 10;
 var clickable = false;
 var mode = "";
 var input = "";
