@@ -35,7 +35,7 @@ function waitForSeconds(seconds) {
 main();
 
 async function main() {
-  
+
   console.log(count);
 
   var intro = new Audio("audioFiles/audemyIntro.mp3");
@@ -47,56 +47,56 @@ async function main() {
   await waitForSeconds(4);
 
 
-  
+
   again = true;
-  while(again){
-  if(again){
-    
-    again = false;
-    
-    var option = new Audio("audioFiles/optionAction.mp3");
-    clickable = true;
-    option.play();
-    await waitForSeconds(8);
-    
-    console.log("at front again");
-  mode = "mode";
-  while (mode == "mode") {
-    console.log("in the while mode");
-    clickable = true;
-    await waitForRecognitionResult();
-    clickable = false;
-  }
+  while (again) {
+    if (again) {
 
-  }
+      again = false;
+
+      var option = new Audio("audioFiles/optionAction.mp3");
+
+      option.play();
+      await waitForSeconds(8);
+      clickable = true;
+      console.log("at front again");
+      mode = "mode";
+      while (mode == "mode") {
+        console.log("in the while mode");
+        clickable = true;
+        await waitForRecognitionResult();
+        clickable = false;
+      }
+
+    }
     count = 0;
-    right =0;
-  
-  let mainPromise;
-  if (mode == "math") {
-    mainPromise = mainMath();
-  } else if (mode == "spell") {
-    mainPromise = mainSpell();
-  }
+    right = 0;
 
-  if (mainPromise) {
-    await mainPromise;
-  }
-  console.log("HERE");
-   mode= "again";
-  while(mode=="again"){
-  var again = new Audio("audioFiles/again.mp3");
-  clickable = true;
-    again.play();
- 
-  console.log(mode);
-  await waitForSeconds(8);
-  await waitForRecognitionResult();
-     console.log("not stuck in wait...");
-  }
+    let mainPromise;
+    if (mode == "math") {
+      mainPromise = mainMath();
+    } else if (mode == "spell") {
+      mainPromise = mainSpell();
+    }
+
+    if (mainPromise) {
+      await mainPromise;
+    }
+    console.log("HERE");
+    mode = "again";
+    while (mode == "again") {
+      var again = new Audio("audioFiles/again.mp3");
+      clickable = true;
+      again.play();
+
+      console.log(mode);
+      await waitForSeconds(8);
+      await waitForRecognitionResult();
+      console.log("not stuck in wait...");
+    }
     console.log(mode);
-  //would you like to play again? respond yes or no
-  } 
+    //would you like to play again? respond yes or no
+  }
 }
 
 //make gnereate word function
@@ -145,11 +145,11 @@ async function mainSpell() {
     await waitForSeconds(3);
   }
   else {
-    
+
     var youGot = new Audio('audioFiles/youGot.mp3');
     youGot.play();
     await waitForSeconds(2);
-    
+
     speak(right);
     var better = new Audio('audioFiles/better.mp3');
     better.play();
@@ -230,7 +230,6 @@ function generateAdditionProblems() {
   num2 = Math.floor(Math.random() * 10) + 1;
 
   console.log(`What is  ` + num1 + ` +  ` + num2);
-  diagnostic.textContent = `What is  ` + num1 + ` +  ` + num2;
 
 }
 
@@ -244,7 +243,6 @@ document.body.onclick = function() {
     start.play();
     console.log('Ready to receive an answer.');
 
-    clickable = false;
   }
 }
 
@@ -252,6 +250,7 @@ async function waitForRecognitionResult() {
   return new Promise(resolve => {
     recognition.onresult = async function(event) {
       input = event.results[0][0].transcript;
+      clickable = false;
       console.log(input + " input!");
       await checkInput();
       console.log("GOT HERE OMG");
@@ -281,11 +280,11 @@ async function checkInput() {
   else if (mode == "math") {
 
     console.log("in math");
-    diagnostic.textContent = 'Result received: ' + input + '.';
+
     console.log((num1 + num2) + "expected");
     console.log(input);
     console.log(toNum(input));
-    if (num1 + num2 == toNum(input)||input.includes(num1+num2)) {
+    if (num1 + num2 == toNum(input) || input.includes(num1 + num2)) {
       right++;
       var ding = new Audio('audioFiles/ding.mp3');
       ding.play();
@@ -308,7 +307,7 @@ async function checkInput() {
     }
   }
   else if (mode == "spell") {
-    diagnostic.textContent = 'Result received: ' + input + '.';
+
     formatString(input);
     console.log(input == word);
     console.log(word);
@@ -332,25 +331,25 @@ async function checkInput() {
       var correctWas = new Audio('audioFiles/correctWas.mp3');
       correctWas.play();
       await waitForSeconds(3);
-       console.log(word+" d");
+      console.log(word + " d");
       console.log(separateWithSpaces(word));
       speak(separateWithSpaces(word));
 
     }
   }
-  else if(mode=="again"){
+  else if (mode == "again") {
     if (input.includes("yes")) {
-        again = true;
+      again = true;
       mode = "mode";
 
     }
     else if (input.includes("no")) {
       var outro = new Audio("audioFiles/outro.mp3");
-          outro.play();
+      outro.play();
       mode = "done";
       await waitForSeconds(9);
     }
-   
+
   }
   // resolve();
 }
@@ -387,7 +386,8 @@ recognition.onspeechend = function() {
 
 
 recognition.onnomatch = function(event) {
-  diagnostic.textContent = "I didn't recognise that number. Please click the screen and try again.";
+
+  clickable = true;
 }
 
 recognition.onerror = function(event) {
@@ -395,7 +395,8 @@ recognition.onerror = function(event) {
     speak("Sorry, I didn't catch that. Please try again.");
     clickable = true;
   }
-  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+
+  clickable = true;
 }
 function speak(s) {
   utterance = new SpeechSynthesisUtterance(s);
