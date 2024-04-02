@@ -540,7 +540,7 @@ nav.navbar.bootsnav .navbar-toggle i {
   .progress {
     border-radius: 3px;
     overflow: visible;
-    background: #e6ecf3;
+   /* background: #e6ecf3;*/
     height: 8px;
     margin-top: 15px;
     width: 85%;
@@ -624,7 +624,7 @@ nav.navbar.bootsnav .navbar-toggle i {
     content: "";
     width: 2px;
     height: 84%;
-    background: #b2c1ce;
+   /* background: #b2c1ce;*/
     position: absolute;
     top: 1.5%;
     left: 45.8%;
@@ -1088,4 +1088,4 @@ nav.navbar.bootsnav .navbar-toggle i {
     }
   }
 
-  /*========================Thank you=================
+}
