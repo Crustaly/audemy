@@ -1,20 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width" />
+<html>
 
-    <title>Audemy.org</title>
-
-    <link rel="stylesheet" href="playStyle.css" />
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="playStyle.css" rel="stylesheet" type="text/css" />
+</head>
 
   <body>
-    <img src="assets/logo/coverPage.png" alt="Audemy" class="center">
-    <p class="hints"></p> 
-  
+      <div class="navbar">
+          <div>
+              <img src="gameImages/buttons/logoNav.png" alt="Logo" width="50">
+          </div>
+          <div>
+              <a href="#">Home</a>
+          </div>
+      </div>
+     <h2 id = "mainInformation">Welcome to Audemy!<br><br>
+       Make sure your volume is turned on to interact with the game!</h2>
+    <button  onclick="gameMenu()"><img src="gameImages/buttons/playButton.png" alt="startButton" class="start-button" id = "start" ></button>
+    
+      <div class="container">
+          <section>
+              <h2 id = "mathTitle" class = "title">Math Games</h2>
+              <div class="game-buttons">
+                  <button ><img data-audio="blastOffAudio"src="gameImages/buttons/button1.png" alt="Button 1" class="game-button" id = "blastOff" onclick= "inGame('blastOff')"></button>
+                  <button href="#"><img data-audio="makeACakeAudio" src="gameImages/buttons/button2.png" alt="Button 2" class="game-button" id = "makeACake"></button>
+                  <button href="#"><img data-audio="eggHuntAudio" src="gameImages/buttons/button3.png" alt="Button 3" class="game-button" id = "eggHunt"></button>
+              </div>
+          </section>
+          <section>
+              <h2 id = "spellTitle" class = "title">Spelling Games</h2>
+              <div class="game-buttons">
+                  <button href="#"><img data-audio="sharkChaseAudio"src="gameImages/buttons/button4.png" alt="Button 4" class="game-button" id = "sharkChase"></button>
+                  <button href="#"><img data-audio="1minChalAudio"src="gameImages/buttons/button5.png" alt="Button 5" class="game-button" id = "minChallange"></button>
+                  <button href="#"><img data-audio="treasureHuntAudio"src="gameImages/buttons/button6.png" alt="Button 6" class="game-button" id = "treasureHunt"></button>
+              </div>
+          </section>
+      </div>
+    <div class = "audios">
+    <audio id="blastOffAudio" src="audioFiles/gameNames/blastOffName.mp3"></audio>
+     <audio id="makeACakeAudio" src="audioFiles/gameNames/makeACakeName.mp3"></audio>
+     <audio id="eggHuntAudio" src="audioFiles/gameNames/eggHuntName.mp3"></audio>
+     <audio id="sharkChaseAudio" src="audioFiles/gameNames/sharkChaseName.mp3"></audio>
+     <audio id="1minChalAudio" src="audioFiles/gameNames/oneMinChalName.mp3"></audio>
+     <audio id="treasureHuntAudio" src="audioFiles/gameNames/treasureHuntName.mp3"></audio>
+    </div>
 
+    <div>
+      <img src="gameImages/gameScreen/blastOffScreen.png" alt="blastOffScreen" class="screen" id = "blastOffScreen">
+    </div>
     <script src="playScript.js"></script>
   </body>
+
 </html>

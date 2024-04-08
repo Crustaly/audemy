@@ -1,3 +1,4 @@
+
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -9,221 +10,217 @@ recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-//change mode and clickable
-var roundCount = 10;
-var clickable = false;
-var mode = "";
-var input = "";
-
 var diagnostic = document.querySelector('.output');
 var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
+
+var roundCount = 1;
+var clickable = false;
+var input = "";
+var correct = false;
 
 var num1;
 var num2;
 var word = "";
 var count = 0;
 var right = 0;
-var again = false;
 
-function waitForSeconds(seconds) {
+
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll('.game-button');
+
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      const audioId = button.dataset.audio;
+      const audio = document.getElementById(audioId);
+      audio.play();
+    });
+
+    button.addEventListener('mouseleave', function() {
+      const audioId = button.dataset.audio;
+      const audio = document.getElementById(audioId);
+      audio.pause();
+      audio.currentTime = 0; // Reset audio to the beginning
+    });
+  });
+});
+mainMenu();
+speak("");
+
+function mainMenu() {
+  removeMenuButtons();
+  removeImages();
+  appear('start');
+  appear('mainInformation');
+}
+
+function removeImages() {
+  disappear('blastOffScreen');
+}
+function removeMenuButtons() {
+  disappear('blastOff');
+  disappear('makeACake');
+  disappear('eggHunt');
+  disappear('sharkChase');
+  disappear('minChallange');
+  disappear('treasureHunt');
+  disappear('spellTitle'); 
+  disappear('mathTitle');
+  disappear('start');
+  disappear('mainInformation');
+}
+
+function gameMenu() {
+  appear('blastOff');
+  appear('makeACake');
+  appear('eggHunt');
+  appear('sharkChase');
+  appear('minChallange');
+  appear('treasureHunt');
+  disappear('start');
+  disappear('mainInformation');
+  appear('spellTitle'); 
+  appear('mathTitle');
+  removeImages();
+
+}
+function inGame(gameId) {
+  removeMenuButtons();
+  if(gameId=="blastOff") {
+    runBlastOff();
+  }
+}
+function disappear(buttonId) {
+  var button = document.getElementById(buttonId);
+  button.style.display = "none";
+}
+
+function appear(buttonId) {
+  var button = document.getElementById(buttonId);
+  button.style.display = "block"; // or "inline" or any valid display value
+}
+
+
+async function runBlastOff(){
+  appear("blastOffScreen");
+  await playAudio("audioFiles/gameNames/blastOff/blastOffIntro.mp3", 40);
+  roundCount = 8;
+  clickable = false;
+  var distance = 0;
+  while (count < roundCount) {
+    count++;
+    clickable = false;
+    correct = false;
+    await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
+    speak(count);
+    await mathQuestion(); 
+    if(correct){
+      await playAudio("audioFiles/generalGame/ding.mp3", .5);
+      var amount = Math.floor(Math.random() * 15) + 15;
+      distance  = distance+amount;
+      await playAudio("audioFiles/gameNames/blastOff/correctQuestion.mp3",3);
+      speak(amount);
+       await waitForSeconds(.5);
+      await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
+
+    }
+    else{
+      await playAudio("audioFiles/generalGame/drum.mp3", .5);
+      var amount = Math.floor(Math.random() * 5) + 5;
+      distance  = distance+amount;
+      await playAudio("audioFiles/gameNames/blastOff/wrongQuestion.mp3",2.7);
+      speak(amount);
+      await waitForSeconds(.5);
+      await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
+await playAudio("audioFiles/gameNames/blastOff/correctWas.mp3", 2)
+      speak((num1+num2));
+      await waitForSeconds(.5);
+    } 
+  }
+  if(distance>=100){
+    await playAudio("audioFiles/gameNames/blastOff/congratsPart1.mp3",3);
+    speak(distance);
+     await waitForSeconds(1);
+    await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
+  }
+  else{
+     await playAudio("audioFiles/gameNames/blastOff/failPart1.mp3",4.5);
+    speak(distance);
+     await waitForSeconds(1);
+    await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
+  }
+  clickable = false;
+  gameMenu();
+}
+
+async function spellQuestion(){
+  generateWord();
+  speak(word);
+  await waitForSeconds(1);
+  clickable = true;
+  await waitForRecognitionResult();
+  formatString(input);
+
+  if(word==input){
+    correct = true;
+  }
+}
+
+
+async function mathQuestion() {
+  generateAdditionProblems();
+  speak("What is");
+  await waitForSeconds(1);
+  speak(num1);
+  await waitForSeconds(2.5);
+  await playAudio("audioFiles/generalGame/plus.mp3", 1);
+  speak(num2)
+  await waitForSeconds(1);
+  clickable = true;
+  await waitForRecognitionResult();
+  if(num1+num2==toNum(input)){
+    correct = true;
+  }
+  }
+
+document.body.onclick = function() {
+
+  console.log(clickable + " in function");
+  if (clickable) {
+    recognition.start();
+    console.log('Ready to receive an answer.');
+
+  }
+}
+
+
+async function waitForRecognitionResult() {
+
+  console.log("WQIATING");
   return new Promise(resolve => {
-    setTimeout(resolve, seconds * 1000);
+    recognition.onresult = async function(event) {
+      input = event.results[0][0].transcript;
+      resolve(); 
+    }
   });
 }
 
-main();
-
-async function main() {
-
-  console.log(count);
-
-  var intro = new Audio("audioFiles/audemyIntro.mp3");
-  intro.play();
-  await waitForSeconds(11);
-
-  var options = new Audio("audioFiles/options.mp3");
-  options.play();
-  await waitForSeconds(4);
-
-
-
-  again = true;
-  while (again) {
-    if (again) {
-
-      again = false;
-
-      var option = new Audio("audioFiles/optionAction.mp3");
-
-      option.play();
-      await waitForSeconds(8);
-      clickable = true;
-      console.log("at front again");
-      mode = "mode";
-      while (mode == "mode") {
-        console.log("in the while mode");
-        clickable = true;
-        await waitForRecognitionResult();
-        clickable = false;
-      }
-
-    }
-    count = 0;
-    right = 0;
-
-    let mainPromise;
-    if (mode == "math") {
-      mainPromise = mainMath();
-    } else if (mode == "spell") {
-      mainPromise = mainSpell();
-    }
-
-    if (mainPromise) {
-      await mainPromise;
-    }
-    console.log("HERE");
-    mode = "again";
-    while (mode == "again") {
-      var again = new Audio("audioFiles/again.mp3");
-      clickable = true;
-      again.play();
-
-      console.log(mode);
-      await waitForSeconds(8);
-      await waitForRecognitionResult();
-      console.log("not stuck in wait...");
-    }
-    console.log(mode);
-    //would you like to play again? respond yes or no
-  }
+function playAudio(audio) {
+    audio.play();
 }
 
-//make gnereate word function
-async function mainSpell() {
-
-  var introSpell = new Audio('audioFiles/introSpell.mp3');
-  introSpell.play();
-  await waitForSeconds(12);
-
-  while (count < roundCount) {
-    count++;
-    clickable = false;
-    generateWord();
-    // Perform some actions
-    var qNum = new Audio('audioFiles/qNum.mp3');
-    qNum.play();
-    await waitForSeconds(2);
-    speak(count);
-    await waitForSeconds(2);
-
-    var howSpell = new Audio('audioFiles/howSpell.mp3');
-    howSpell.play();
-    await waitForSeconds(2);
-
-    console.log(word);
-    speak(word);
-    await waitForSeconds(1);
-    clickable = true;
-    await waitForRecognitionResult();
-
-    await waitForSeconds(2);
-    console.log(clickable);
-  }
-  if (right == 10) {
-    var allRight = new Audio('audioFiles/allRight.mp3');
-    allRight.play();
-    await waitForSeconds(3);
-  }
-  else if (right >= 5) {
-    var youGot = new Audio('audioFiles/youGot.mp3');
-    youGot.play();
-    await waitForSeconds(2);
-    speak(right);
-    var good = new Audio('audioFiles/good.mp3');
-    good.play();
-    await waitForSeconds(3);
-  }
-  else {
-
-    var youGot = new Audio('audioFiles/youGot.mp3');
-    youGot.play();
-    await waitForSeconds(2);
-
-    speak(right);
-    var better = new Audio('audioFiles/better.mp3');
-    better.play();
-    await waitForSeconds(5);
-  }
+function stopAudio(audio) {
+    audio.pause();
+    audio.currentTime = 0; // Resets audio to beginning
 }
 
-// Example usage
-
-async function mainMath() {
-
-  var introMath = new Audio('audioFiles/introMath.mp3');
-  introMath.play();
-  await waitForSeconds(11);
-
-
-  while (count < roundCount) {
-    count++;
-    clickable = false;
-    generateAdditionProblems();
-    // Perform some actions
-    var qNum = new Audio('audioFiles/qNum.mp3');
-    qNum.play();
-    await waitForSeconds(2);
-    speak(count);
-    await waitForSeconds(2);
-    var whatIs = new Audio('audioFiles/whatIs.mp3');
-    whatIs.play();
-    await waitForSeconds(2);
-
-    speak(num1);
-    await waitForSeconds(1);
-
-    var plus = new Audio('audioFiles/plus.mp3');
-    plus.play();
-    await waitForSeconds(1);
-
-    speak(num2)
-    await waitForSeconds(1);
-    console.log(clickable);
-    clickable = true;
-    await waitForRecognitionResult();
-
-    await waitForSeconds(2);
-
-
-    console.log(clickable);
-  }
-  if (right == 10) {
-    var allRight = new Audio('audioFiles/allRight.mp3');
-    allRight.play();
-    await waitForSeconds(3);
-  }
-  else if (right >= 5) {
-    var youGot = new Audio('audioFiles/youGot.mp3');
-    youGot.play();
-    await waitForSeconds(1);
-    speak(right);
-    var good = new Audio('audioFiles/good.mp3');
-    good.play();
-    await waitForSeconds(3);
-  }
-  else {
-    var youGot = new Audio('audioFiles/youGot.mp3');
-    youGot.play();
-    await waitForSeconds(1);
-    speak(right);
-    var better = new Audio('audioFiles/better.mp3');
-    better.play();
-    await waitForSeconds(5);
-  }
+recognition.onerror = function() {
+  speak("Sorry, I didn't catch that. Please try again.");
+  clickable = true;
 }
-
-// Continue with other actions
+recognition.onspeechend = function() {
+  recognition.stop();
+}
 
 function generateAdditionProblems() {
   num1 = Math.floor(Math.random() * 10) + 1;
@@ -233,171 +230,22 @@ function generateAdditionProblems() {
 
 }
 
-
-document.body.onclick = function() {
-
-  console.log(clickable + " in function");
-  if (clickable) {
-    recognition.start();
-    var start = new Audio('audioFiles/start.mp3');
-    start.play();
-    console.log('Ready to receive an answer.');
-
-  }
-}
-
-async function waitForRecognitionResult() {
-  return new Promise(resolve => {
-    recognition.onresult = async function(event) {
-      input = event.results[0][0].transcript;
-      clickable = false;
-      console.log(input + " input!");
-      await checkInput();
-      console.log("GOT HERE OMG");
-      resolve(); // Resolve the promise to indicate the recognition result event has been received
-    }
-  });
-
-}
-async function checkInput() {
-  console.log("CHECKERS");
-  console.log(mode);
-  console.log(input);
-  if (mode == "mode") {
-    if (input.includes("math")) {
-      mode = "math";
-
-    }
-    else if (input.includes("spell")) {
-      mode = "spell"
-    }
-    else {
-      var errorMode = new Audio("audioFiles/errorMode.mp3");
-      errorMode.play();
-      await waitForSeconds(9);
-    }
-  }
-  else if (mode == "math") {
-
-    console.log("in math");
-
-    console.log((num1 + num2) + "expected");
-    console.log(input);
-    console.log(toNum(input));
-    if (num1 + num2 == toNum(input) || input.includes(num1 + num2)) {
-      right++;
-      var ding = new Audio('audioFiles/ding.mp3');
-      ding.play();
-      await waitForSeconds(.5);
-      var correct = new Audio('audioFiles/correct.mp3');
-      correct.play();
-
-    } else {
-      var drum = new Audio('audioFiles/drum.mp3');
-      drum.play();
-      await waitForSeconds(.5);
-      var wrong = new Audio('audioFiles/wrong.mp3');
-      wrong.play();
-      await waitForSeconds(2);
-      var correctWas = new Audio('audioFiles/correctWas.mp3');
-      correctWas.play();
-      await waitForSeconds(3);
-      speak(num1 + num2);
-
-    }
-  }
-  else if (mode == "spell") {
-
-    formatString(input);
-    console.log(input == word);
-    console.log(word);
-    if (input == word) {
-      right++;
-      var ding = new Audio('audioFiles/ding.mp3');
-      ding.play();
-      await waitForSeconds(.5);
-      var correct = new Audio('audioFiles/correct.mp3');
-      correct.play();
-
-    } else {
-      console.log(word);
-      var drum = new Audio('audioFiles/drum.mp3');
-      drum.play();
-      await waitForSeconds(.5);
-      var wrong = new Audio('audioFiles/wrong.mp3');
-      wrong.play();
-      await waitForSeconds(.5);
-      await waitForSeconds(2);
-      var correctWas = new Audio('audioFiles/correctWas.mp3');
-      correctWas.play();
-      await waitForSeconds(3);
-      console.log(word + " d");
-      console.log(separateWithSpaces(word));
-      speak(separateWithSpaces(word));
-
-    }
-  }
-  else if (mode == "again") {
-    if (input.includes("yes")) {
-      again = true;
-      mode = "mode";
-
-    }
-    else if (input.includes("no")) {
-      var outro = new Audio("audioFiles/outro.mp3");
-      outro.play();
-      mode = "done";
-      await waitForSeconds(9);
-    }
-
-  }
-  // resolve();
-}
-function separateWithSpaces(str) {
-  // Split the string into an array of characters
-  const characters = str.split('');
-
-  // Join the characters with spaces in between
-  const separatedString = characters.join(' ');
-
-  return separatedString;
-}
-
-function formatString(str) {
-  // Convert the string to lowercase
-  const lowerCaseStr = str.toLowerCase();
-
-  // Remove spaces from the string
-  const formattedStr = lowerCaseStr.replace(/\s/g, '');
-
-  input = formattedStr;
-}
-
-// Output: "helloworld"
 function generateWord() {
-  // Return the word at the randomly generated index
   word = easyWords[Math.floor(Math.random() * easyWords.length)];
 
 }
-
-recognition.onspeechend = function() {
-  recognition.stop();
+function formatString(str) {
+  const lowerCaseStr = str.toLowerCase();
+  const formattedStr = lowerCaseStr.replace(/\s/g, '');
+  input = formattedStr;
 }
 
-
-recognition.onnomatch = function(event) {
-
-  clickable = true;
+function waitForSeconds(seconds) {
+  return new Promise(resolve => {
+    setTimeout(resolve, seconds * 1000);
+  });
 }
 
-recognition.onerror = function(event) {
-  if (event.error == "no-speech") {
-    speak("Sorry, I didn't catch that. Please try again.");
-    clickable = true;
-  }
-
-  clickable = true;
-}
 function speak(s) {
   utterance = new SpeechSynthesisUtterance(s);
   voices = speechSynthesis.getVoices()
@@ -405,6 +253,10 @@ function speak(s) {
   speechSynthesis.speak(utterance);
 }
 
+
+const easyWords = [
+"cat", "dog", "hat", "moon", "star", "fish", "bird", "tree", "cake", "ball", "duck", "frog", "desk", "door", "home", "lamp", "leaf", "milk", "nest", "park", "soap", "sock", "chair", "table", "mouse", "horse", "apple", "banana", "lemon", "grape", "melon", "orange", "peach", "pear", "cherry", "candy", "pizza", "burger", "apple", "bread", "cheese", "chicken", "pasta", "pizza", "salad", "sauce", "coffee", "juice", "water", "muffin", "butter", "sugar", "honey", "bread", "bottle", "bag", "car", "bus", "bike", "train", "truck", "plane", "boat", "van", "house",  "store", "bank", "park", "zoo", "pool", "beach", "river", "lake", "hill", "city", "town", "school", "park", "farm", "forest", "ocean", "planet", "moon", "star", "sky", "cloud", "rain", "snow", "wind", "storm", "light", "dark", "cold", "hot", "warm", "cool", "wet", "dry", "fast", "slow", "quick", "easy", "hard", "soft", "loud",  "quiet", "big", "small", "short", "tall", "thick", "thin", "skinny", "young", "old", "new", "fresh", "clean", "dirty", "happy", "sad", "angry", "scared", "tired", "sleepy", "purple", "green", "brown", "orange", "yellow", "pink",  "black", "fun", "boring", "nice", "mean", "kind", "rude", "good", "bad", "right", "wrong", "true", "false", "smart", "dumb", "brave", "coward",  "rich", "safe", "danger", "healthy", "sick", "alive", "dead", "beautiful",  "ugly", "pretty", "handsome", "clever", "stupid", "calm", "wild", "friendly",  "happy", "merry", "joyful", "sad", "gloomy", "serious", "silly", "laugh",  "cry", "smile", "frown", "wink", "nod", "shake", "blink", "yawn", "stretch",  "jump", "run", "walk", "crawl", "swim", "fly", "climb", "fall", "ride", "drive", "row", "lift", "push", "pull", "throw", "catch", "kick", "hit", "fight", "argue", "agree", "disagree", "listen", "speak", "talk", "whisper",  "shout", "read", "write", "draw", "paint", "color", "build", "destroy", "fix", "break", "open", "close", "start", "finish", "stop", "go", "stay", "leave", "enter", "exit", "find", "lose", "win", "lose", "earn", "spend", "buy", "sell", "pay", "receive", "give", "take", "keep", "throw", "catch", "drop", "pick", "put", "move", "turn", "lift", "pull", "push", "carry", "hold", "touch", "feel", "watch", "listen", "smell", "taste", "drink", "sleep", "dream", "wake", "work", "rest", "play", "study", "learn", "teach", "think", "remember", "forget", "understand", "know","believe", "doubt", "hope", "wish", "imagine", "create", "invent", "discover",  "explore", "solve", "plan", "decide", "choose", "change", "stay",  "remain", "live", "born", "grow", "develop", "age", "mature", "youth", "adult", "child", "baby", "parent", "mother", "father", "brother", "sister", "friend", "enemy", "stranger", "neighbor", "teacher", "student", "doctor", "nurse", "engineer", "artist", "musician", "actor", "writer", "singer",  "dancer", "chef", "waiter", "driver",  "pilot", "captain", "sailor", "farmer",  "soldier", "policeman", "fireman",  "lawyer", "judge", "athlete", "coach",  "referee", "judge",
+];
 function toNum(num) {
   if (num === 'one' || num === "1") {
     return 1;
@@ -454,341 +306,8 @@ function toNum(num) {
   }
 }
 
-const easyWords = [
-  "cat",
-  "dog",
-  "hat",
-  "moon",
-  "star",
-  "fish",
-  "bird",
-  "tree",
-  "cake",
-  "ball",
-  "duck",
-  "frog",
-  "desk",
-  "door",
-  "home",
-  "lamp",
-  "leaf",
-  "milk",
-  "nest",
-  "park",
-  "soap",
-  "sock",
-  "chair",
-  "table",
-  "mouse",
-  "horse",
-  "apple",
-  "banana",
-  "lemon",
-  "grape",
-  "melon",
-  "orange",
-  "peach",
-  "pear",
-  "cherry",
-  "candy",
-  "pizza",
-  "burger",
-  "apple",
-  "bread",
-  "cheese",
-  "chicken",
-  "pasta",
-  "pizza",
-  "salad",
-  "sauce",
-  "coffee",
-  "juice",
-  "water",
-  "muffin",
-  "butter",
-  "sugar",
-  "honey",
-  "bread",
-  "bottle",
-  "bag",
-  "car",
-  "bus",
-  "bike",
-  "train",
-  "truck",
-  "plane",
-  "boat",
-  "van",
-  "house",
-  "store",
-  "bank",
-  "park",
-  "zoo",
-  "pool",
-  "beach",
-  "river",
-  "lake",
-  "hill",
-  "city",
-  "town",
-  "school",
-  "park",
-  "farm",
-  "forest",
-  "ocean",
-  "planet",
-  "moon",
-  "star",
-  "sky",
-  "cloud",
-  "rain",
-  "snow",
-  "wind",
-  "storm",
-  "light",
-  "dark",
-  "cold",
-  "hot",
-  "warm",
-  "cool",
-  "wet",
-  "dry",
-  "fast",
-  "slow",
-  "quick",
-  "easy",
-  "hard",
-  "soft",
-  "loud",
-  "quiet",
-  "big",
-  "small",
-  "short",
-  "tall",
-  "thick",
-  "thin",
-  "skinny",
-  "young",
-  "old",
-  "new",
-  "fresh",
-  "clean",
-  "dirty",
-  "happy",
-  "sad",
-  "angry",
-  "scared",
-  "tired",
-  "sleepy",
-  "purple",
-  "green",
-  "brown",
-  "orange",
-  "yellow",
-  "pink",
-  "black",
-  "fun",
-  "boring",
-  "nice",
-  "mean",
-  "kind",
-  "rude",
-  "good",
-  "bad",
-  "right",
-  "wrong",
-  "true",
-  "false",
-  "smart",
-  "dumb",
-  "brave",
-  "coward",
-  "rich",
-  "safe",
-  "danger",
-  "healthy",
-  "sick",
-  "alive",
-  "dead",
-  "beautiful",
-  "ugly",
-  "pretty",
-  "handsome",
-  "clever",
-  "stupid",
-  "calm",
-  "wild",
-  "friendly",
-  "happy",
-  "merry",
-  "joyful",
-  "sad",
-  "gloomy",
-  "serious",
-  "silly",
-  "laugh",
-  "cry",
-  "smile",
-  "frown",
-  "wink",
-  "nod",
-  "shake",
-  "blink",
-  "yawn",
-  "stretch",
-  "jump",
-  "run",
-  "walk",
-  "crawl",
-  "swim",
-  "fly",
-  "climb",
-  "fall",
-  "ride",
-  "drive",
-  "row",
-  "lift",
-  "push",
-  "pull",
-  "throw",
-  "catch",
-  "kick",
-  "hit",
-  "fight",
-  "argue",
-  "agree",
-  "disagree",
-  "listen",
-  "speak",
-  "talk",
-  "whisper",
-  "shout",
-  "read",
-  "write",
-  "draw",
-  "paint",
-  "color",
-  "build",
-  "destroy",
-  "fix",
-  "break",
-  "open",
-  "close",
-  "start",
-  "finish",
-  "stop",
-  "go",
-  "stay",
-  "leave",
-  "enter",
-  "exit",
-  "find",
-  "lose",
-  "win",
-  "lose",
-  "earn",
-  "spend",
-  "buy",
-  "sell",
-  "pay",
-  "receive",
-  "give",
-  "take",
-  "keep",
-  "throw",
-  "catch",
-  "drop",
-  "pick",
-  "put",
-  "move",
-  "turn",
-  "lift",
-  "pull",
-  "push",
-  "carry",
-  "hold",
-  "touch",
-  "feel",
-  "watch",
-  "listen",
-  "smell",
-  "taste",
-  "drink",
-  "sleep",
-  "dream",
-  "wake",
-  "work",
-  "rest",
-  "play",
-  "study",
-  "learn",
-  "teach",
-  "think",
-  "remember",
-  "forget",
-  "understand",
-  "know",
-  "believe",
-  "doubt",
-  "hope",
-  "wish",
-  "imagine",
-  "create",
-  "invent",
-  "discover",
-  "explore",
-  "solve",
-  "plan",
-  "decide",
-  "choose",
-  "change",
-  "stay",
-  "remain",
-  "live",
-  "born",
-  "grow",
-  "develop",
-  "age",
-  "mature",
-  "youth",
-  "adult",
-  "child",
-  "baby",
-  "parent",
-  "mother",
-  "father",
-  "brother",
-  "sister",
-  "friend",
-  "enemy",
-  "stranger",
-  "neighbor",
-  "teacher",
-  "student",
-  "doctor",
-  "nurse",
-  "engineer",
-  "artist",
-  "musician",
-  "actor",
-  "writer",
-  "singer",
-  "dancer",
-  "chef",
-  "waiter",
-  "driver",
-  "pilot",
-  "captain",
-  "sailor",
-  "farmer",
-  "soldier",
-  "policeman",
-  "fireman",
-  "lawyer",
-  "judge",
-  "athlete",
-  "coach",
-  "referee",
-  "judge",
-
-]
+async function playAudio(audio, len){
+  var a = new Audio(audio);
+  a.play();
+  await waitForSeconds(len);
+}
