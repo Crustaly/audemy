@@ -25,31 +25,49 @@
           <section>
               <h2 id = "mathTitle" class = "title">Math Games</h2>
               <div class="game-buttons">
-                  <button ><img data-audio="blastOffAudio"src="gameImages/buttons/button1.png" alt="Button 1" class="game-button" id = "blastOff" onclick= "inGame('blastOff')"></button>
-                  <button href="#"><img data-audio="makeACakeAudio" src="gameImages/buttons/button2.png" alt="Button 2" class="game-button" id = "makeACake"></button>
-                  <button href="#"><img data-audio="eggHuntAudio" src="gameImages/buttons/button3.png" alt="Button 3" class="game-button" id = "eggHunt"></button>
+                  <button ><img data-audio="fruitFrenzyAudio"src="gameImages/buttons/gameButtons/fruitFrenzyButton.png" alt="" class="game-button" id = "fruitFrenzy" onclick= "inGame('fruitFrenzy')"></button>
+                  <button href="#"><img data-audio="carCountingAudio" src="gameImages/buttons/gameButtons/carCountButton.png" alt="" class="game-button" id = "carCounting" onclick= "inGame('carCounting')"></button>
+                  <button href="#"><img data-audio="shapeParadeAudio" src="gameImages/buttons/gameButtons/shapeParade.png" alt="" class="game-button" id = "shapeParade"></button>
               </div>
           </section>
           <section>
               <h2 id = "spellTitle" class = "title">Spelling Games</h2>
               <div class="game-buttons">
-                  <button href="#"><img data-audio="sharkChaseAudio"src="gameImages/buttons/button4.png" alt="Button 4" class="game-button" id = "sharkChase"></button>
-                  <button href="#"><img data-audio="1minChalAudio"src="gameImages/buttons/button5.png" alt="Button 5" class="game-button" id = "minChallange"></button>
-                  <button href="#"><img data-audio="treasureHuntAudio"src="gameImages/buttons/button6.png" alt="Button 6" class="game-button" id = "treasureHunt"></button>
+                  <button href="#"><img data-audio="spellingSafariAudio"src="gameImages/buttons/gameButtons/spellSafariButton.png" alt="" class="game-button" id = "spellingSafari"onclick= "inGame('spellingSafari')"></button>
+                  <button href="#"><img data-audio="animalSortAudio"src="gameImages/buttons/gameButtons/animalSortButton.png" alt="" class="game-button" id = "animalSort"></button>
+                  <button href="#"><img data-audio="storyBuilderAudio"src="gameImages/buttons/gameButtons/storyBuilderButton.png" alt="" class="game-button" id = "storyBuilder"></button>
               </div>
           </section>
       </div>
     <div class = "audios">
-    <audio id="blastOffAudio" src="audioFiles/gameNames/blastOffName.mp3"></audio>
-     <audio id="makeACakeAudio" src="audioFiles/gameNames/makeACakeName.mp3"></audio>
-     <audio id="eggHuntAudio" src="audioFiles/gameNames/eggHuntName.mp3"></audio>
-     <audio id="sharkChaseAudio" src="audioFiles/gameNames/sharkChaseName.mp3"></audio>
-     <audio id="1minChalAudio" src="audioFiles/gameNames/oneMinChalName.mp3"></audio>
-     <audio id="treasureHuntAudio" src="audioFiles/gameNames/treasureHuntName.mp3"></audio>
+    <audio id="fruitFrenzyAudio" src="audioFiles/gameNames/newGameNames/fruitFrenzy.mp3"></audio>
+     <audio id="carCountingAudio" src="audioFiles/gameNames/newGameNames/carCount.mp3"></audio>
+     <audio id="shapeParadeAudio" src="audioFiles/gameNames/newGameNames/shapeParade.mp3"></audio>
+     <audio id="spellingSafariAudio" src="audioFiles/gameNames/newGameNames/spellSafari.mp3"></audio>
+     <audio id="animalSortAudio" src="audioFiles/gameNames/newGameNames/animalSort.mp3"></audio>
+     <audio id="storyBuilderAudio" src="audioFiles/gameNames/newGameNames/storyBuilder.mp3"></audio>
     </div>
 
     <div>
-      <img src="gameImages/gameScreen/blastOffScreen.png" alt="blastOffScreen" class="screen" id = "blastOffScreen">
+      <img src="audioFiles/fruitFrenzy/background.png" alt="" class="screen" id = "fruitFrenzyScreen">
+    </div>
+    <div>
+      <img src="audioFiles/spellSafari/spellSafariScreen.png" alt="" class="screen" id = "spellSafariScreen">
+    </div>
+    <div>
+      <img src="gameImages/gameScreen/blastOffScreen.png" alt="" class="screen" id = "blastOffScreen">
+    </div>
+    <div>
+      <img src="audioFiles/storyBuilder/storyBuilderScreen.png" alt="" class="screen" id = "storyBuilderScreen">
+    </div>
+    <div>
+      <img src="audioFiles/shapeParade/shapeParadeScreen.png" alt="" class="screen" id = "shapeParadeScreen">
+    </div>
+    <div>
+      <img src="audioFiles/carCount/carCountScreen.png" alt="" class="screen" id = "carCountScreen">
+    </div>
+    <div>
+      <img src="audioFiles/animalSort/animalSortScreen.png" alt="" class="screen" id = "animalSortScreen">
     </div>
     <script src="playScript.js"></script>
   </body>

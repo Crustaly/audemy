@@ -78,7 +78,7 @@ h2 {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-   border: none; 
+  /* border: none; */
 }
 
 .game-button {
@@ -86,7 +86,7 @@ h2 {
 
     padding: 20px;
     background-color: transparent;
-    border: 0; /* Set border to 0 */
+   /* border: 0; /* Set border to 0 */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -98,11 +98,11 @@ h2 {
     .game-buttons {
         flex-direction: column;
         align-items: center;
-      border: none; 
+     border: none; 
     }
 
     .game-button {
-      border: none; 
+       border: none;  
         width: 80%;
         margin-bottom: 10px;
     }
@@ -110,4 +110,10 @@ h2 {
 
 .hidden {
     display: none;
+}
+/* Universal focus selector */
+.custom-border {
+    border: 2px solid #B25AE2; /* Adjust border width and color as desired */
+    box-shadow: 0 0 5px #B25AE2; /* Optional: Add a slight box-shadow for a better visual effect */
+    outline: none; /* Keep outline set to none */
 }
