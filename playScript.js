@@ -152,7 +152,7 @@ async function runFruitFrenzy() {
 
   console.log("here");
   appear("fruitFrenzyScreen");
-  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
+ // await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
   roundCount = 5;
   clickable = false;
   var right = 0;
@@ -562,6 +562,8 @@ async function mathQuestion() {
   await waitForSeconds(1);
   clickable = true;
   await waitForRecognitionResult();
+  console.log(toNum(input));
+  console.log(num1 + num2)
   if (num1 + num2 == toNum(input)) {
     correct = true;
   }
@@ -620,6 +622,8 @@ async function fruitMathQuestion() {
     playAudio("audioFiles/fruitFrenzy/spaceOrClick.mp3", 3)
   }
   await waitForRecognitionResult();
+  console.log(toNum(input));
+  console.log(num1 + num2)
   if (num1 + num2 == toNum(input)) {
     correct = true;
   }
@@ -793,52 +797,56 @@ const seaAnimals = [
   'Orca'
 ];
 function toNum(num) {
-  if (num.includes('one') || num.includes("1")) {
-    return 1;
-  } else if (num.includes('two') || num.includes("2")) {
-    return 2;
-  } else if (num.includes('three') || num.includes("3")) {
-    return 3;
-  } else if (num.includes('four') || num.includes("4")) {
-    return 4;
-  } else if (num.includes('five') || num.includes("5")) {
-    return 5;
-  } else if (num.includes('six') || num.includes("6")) {
-    return 6;
-  } else if (num.includes('seven') || num.includes("7")) {
-    return 7;
-  } else if (num.includes('eight') || num.includes("8")) {
-    return 8;
-  } else if (num.includes('nine') || num.includes("9")) {
-    return 9;
-  } else if (num.includes('ten') || num.includes("10")) {
+  console.log(num);
+  //be careful! includes goes to 1  if input is 10
+   if (num.includes('ten') || num.includes('10')) {
     return 10;
-  } else if (num.includes('eleven') || num.includes("11")) {
+  } else if (num.includes('eleven') || num.includes('11')) {
     return 11;
-  } else if (num.includes('twelve') || num.includes("12")) {
+  } else if (num.includes('twelve') || num.includes('12')) {
     return 12;
-  } else if (num.includes('thirteen') || num.includes("13")) {
+  } else if (num.includes('thirteen') || num.includes('13')) {
     return 13;
-  } else if (num.includes('fourteen') || num.includes("14")) {
+  } else if (num.includes('fourteen') || num.includes('14')) {
     return 14;
-  } else if (num.includes('fifteen') || num.includes("15")) {
+  } else if (num.includes('fifteen') || num.includes('15')) {
     return 15;
-  } else if (num.includes('sixteen') || num.includes("16")) {
+  } else if (num.includes('sixteen') || num.includes('16')) {
     return 16;
-  } else if (num.includes('seventeen') || num.includes("17")) {
+  } else if (num.includes('seventeen') || num.includes('17')) {
     return 17;
-  } else if (num.includes('eighteen') || num.includes("18")) {
+  } else if (num.includes('eighteen') || num.includes('18')) {
     return 18;
-  } else if (num.includes('nineteen') || num.includes("19")) {
+  } else if (num.includes('nineteen') || num.includes('19')) {
     return 19;
-  } else if (num.includes('twenty') || num.includes("20")) {
+  } else if (num.includes('twenty') || num.includes('20')) {
     return 20;
+  } else if (num.includes('one') || num.includes('1')) {
+    return 1;
+  } else if (num.includes('two') || num.includes('2')) {
+    return 2;
+  } else if (num.includes('three') || num.includes('3')) {
+    return 3;
+  } else if (num.includes('four') || num.includes('4')) {
+    return 4;
+  } else if (num.includes('five') || num.includes('5')) {
+    return 5;
+  } else if (num.includes('six') || num.includes('6')) {
+    return 6;
+  } else if (num.includes('seven') || num.includes('7')) {
+    return 7;
+  } else if (num.includes('eight') || num.includes('8')) {
+    return 8;
+  } else if (num.includes('nine') || num.includes('9')) {
+    return 9;
+  
   } else if (num.includes('exit')) {
-    return "exit";
+    return 'exit';
   } else {
     return 'unknown';
   }
 }
+
 
 
 async function playAudio(audio, len) {
