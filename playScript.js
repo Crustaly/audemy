@@ -149,12 +149,14 @@ function appear(buttonId) {
 }
 
 async function runFruitFrenzy(){
+  
   console.log("here");
   appear("fruitFrenzyScreen");
   await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
   roundCount = 5;
   clickable = false;
   var right = 0;
+  count = 0;
   while (count < roundCount) {
     count++;
     clickable = false;
@@ -198,6 +200,7 @@ async function runFruitFrenzy(){
 }
 async function runStoryBuilder(){
   appear("storyBuilderScreen");
+  
   answers =  [];
   await playAudio("audioFiles/storyBuilder/storyBuilderIntro.mp3", 31);
   await playAudio("audioFiles/storyBuilder/q1.mp3", 10);
@@ -248,6 +251,8 @@ async function runStoryBuilder(){
   gameMenu();
 }
 async function runAnimalSort(){
+  count = 0;
+
   console.log("here");
   appear("animalSortScreen");
   await playAudio("audioFiles/animalSort/animalSortIntro.mp3", 24);
@@ -295,6 +300,8 @@ async function runAnimalSort(){
 
 
 async function runShapeParade(){
+  count = 0;
+
   console.log("here");
   appear("shapeParadeScreen");
   await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 23);
@@ -345,6 +352,8 @@ async function runShapeParade(){
   gameMenu();
 }
 async function runSpellSafari(){
+  count = 0;
+
   console.log("here");
   appear("spellSafariScreen");
   await playAudio("audioFiles/spellSafari/safariIntro.mp3", 21);
@@ -395,6 +404,8 @@ async function runSpellSafari(){
 
 
 async function runCarCount(){
+  count = 0;
+
   console.log("here");
   appear("carCountScreen");
   await playAudio("audioFiles/carCount/carCountIntro.mp3", 12);
@@ -445,6 +456,8 @@ async function runCarCount(){
 
 
 async function runBlastOff(){
+  count = 0;
+
   console.log("here");
   appear("blastOffScreen");
   await playAudio("audioFiles/gameNames/blastOff/blastOffIntro.mp3", 40);
@@ -662,6 +675,7 @@ async function waitForRecognitionResult() {
   return new Promise(resolve => {
     recognition.onresult = async function(event) {
       input = event.results[0][0].transcript;
+      console.log(input);
       resolve(); 
     }
   });
@@ -697,8 +711,7 @@ function generateWord() {
 
 }
 function formatString(str) {
-  const lowerCaseStr = str.toLowerCase();
-  const formattedStr = lowerCaseStr.replace(/\s/g, '');
+  const formattedStr = str.toLowerCase().replace(/[\s.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
   input = formattedStr;
 }
 
@@ -779,55 +792,54 @@ const seaAnimals = [
   'Sea Lion',
   'Orca'
 ];
-
 function toNum(num) {
-  if (num === 'one' || num === "1") {
+  if (num.includes('one') || num.includes("1")) {
     return 1;
-  } else if (num === 'two' || num === "2") {
+  } else if (num.includes('two') || num.includes("2")) {
     return 2;
-  } else if (num === 'three' || num === "3") {
+  } else if (num.includes('three') || num.includes("3")) {
     return 3;
-  } else if (num === 'four' || num === "4") {
+  } else if (num.includes('four') || num.includes("4")) {
     return 4;
-  } else if (num === 'five' || num === "5") {
+  } else if (num.includes('five') || num.includes("5")) {
     return 5;
-  } else if (num === 'six' || num === "6") {
+  } else if (num.includes('six') || num.includes("6")) {
     return 6;
-  } else if (num === 'seven' || num === "7") {
+  } else if (num.includes('seven') || num.includes("7")) {
     return 7;
-  } else if (num === 'eight' || num === "8") {
+  } else if (num.includes('eight') || num.includes("8")) {
     return 8;
-  } else if (num === 'nine' || num === "9") {
+  } else if (num.includes('nine') || num.includes("9")) {
     return 9;
-  } else if (num === 'ten' || num === "10") {
+  } else if (num.includes('ten') || num.includes("10")) {
     return 10;
-  } else if (num === 'eleven' || num === "11") {
+  } else if (num.includes('eleven') || num.includes("11")) {
     return 11;
-  } else if (num === 'twelve' || num === "12") {
+  } else if (num.includes('twelve') || num.includes("12")) {
     return 12;
-  } else if (num === 'thirteen' || num === "13") {
+  } else if (num.includes('thirteen') || num.includes("13")) {
     return 13;
-  } else if (num === 'fourteen' || num === "14") {
+  } else if (num.includes('fourteen') || num.includes("14")) {
     return 14;
-  } else if (num === 'fifteen' || num === "15") {
+  } else if (num.includes('fifteen') || num.includes("15")) {
     return 15;
-  } else if (num === 'sixteen' || num === "16") {
+  } else if (num.includes('sixteen') || num.includes("16")) {
     return 16;
-  } else if (num === 'seventeen' || num === "17") {
+  } else if (num.includes('seventeen') || num.includes("17")) {
     return 17;
-  } else if (num === 'eighteen' || num === "18") {
+  } else if (num.includes('eighteen') || num.includes("18")) {
     return 18;
-  } else if (num === 'nineteen' || num === "19") {
+  } else if (num.includes('nineteen') || num.includes("19")) {
     return 19;
-  } else if (num === 'twenty' || num === "20") {
+  } else if (num.includes('twenty') || num.includes("20")) {
     return 20;
-  } else if (num == 'exit') {
-    exit = true;
+  } else if (num.includes('exit')) {
     return "exit";
   } else {
-    return 'unknown'
+    return 'unknown';
   }
 }
+
 
 async function playAudio(audio, len){
   var a = new Audio(audio);
