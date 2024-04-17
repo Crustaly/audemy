@@ -152,7 +152,7 @@ async function runFruitFrenzy() {
 
   console.log("here");
   appear("fruitFrenzyScreen");
- // await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
+  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
   roundCount = 5;
   clickable = false;
   var right = 0;
@@ -583,13 +583,14 @@ async function animalSortQuestion() {
   await playAudio("audioFiles/animalSort/clickandsay.mp3", 3.3);
   clickable = true;
   await waitForRecognitionResult();
+  console.log(input);
   if (land == 1) {
-    if (input.includes("land")) {
+    if (input.toLowerCase().includes("land")) {
       correct = true;
     }
   }
   if (land == 2) {
-    if (input.includes("ocean") || input.includes("land")) {
+    if (input.toLowerCase().includes("ocean") || input.includes("land")) {
       correct = true;
     }
   }
@@ -679,6 +680,7 @@ async function waitForRecognitionResult() {
   return new Promise(resolve => {
     recognition.onresult = async function(event) {
       input = event.results[0][0].transcript;
+      input = input.toLowerCase();
       console.log(input);
       resolve();
     }
@@ -695,7 +697,7 @@ function stopAudio(audio) {
 }
 
 recognition.onerror = function() {
-  speak("Sorry, I didn't catch that. Please try again.");
+  speak("Sorry, I didn't catch that. Please click the space bar or tap the screen and try again.");
   clickable = true;
 }
 recognition.onspeechend = function() {
