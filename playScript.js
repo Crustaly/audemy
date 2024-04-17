@@ -2,7 +2,7 @@ function changeButtonBorder(buttonId) {
   buttonId.classList.add('custom-border');
 }
 function removeButtonBorder(buttonId) {
- buttonId.classList.remove('custom-border');
+  buttonId.classList.remove('custom-border');
 }
 
 
@@ -35,9 +35,9 @@ var num2;
 var word = "";
 var count = 0;
 var right = 0;
-var answers =  [];
+var answers = [];
 
-var carTotal=0;
+var carTotal = 0;
 
 /*
 document.addEventListener("DOMContentLoaded", function() {
@@ -86,10 +86,10 @@ function removeMenuButtons() {
   disappear('spellingSafari');
   disappear('animalSort');
   disappear('storyBuilder');
-  disappear('spellTitle'); 
+  disappear('spellTitle');
   disappear('mathTitle');
- // disappear('start');
- // disappear('mainInformation');  
+  // disappear('start');
+  // disappear('mainInformation');  
   menu = false;
 }
 
@@ -100,40 +100,40 @@ function gameMenu() {
   appear('spellingSafari');
   appear('animalSort');
   appear('storyBuilder');
-  appear('spellTitle'); 
+  appear('spellTitle');
   appear('mathTitle');
- // disappear('start');
- // disappear('mainInformation');
-  appear('spellTitle'); 
+  // disappear('start');
+  // disappear('mainInformation');
+  appear('spellTitle');
   appear('mathTitle');
   removeImages();
- // menu = true;
-//  newButton = buttonsGrid[0][0]; 
+  // menu = true;
+  //  newButton = buttonsGrid[0][0]; 
   //playNewAudio(document.getElementById('fruitFrenzyAudio'));
 
 }
 function inGame(gameId) {
   removeMenuButtons();
-  if(gameId=="blastOff") {
+  if (gameId == "blastOff") {
     runBlastOff();
   }
-  if(gameId=='fruitFrenzy'){
+  if (gameId == 'fruitFrenzy') {
     runFruitFrenzy();
   }
-  if(gameId=='spellingSafari'){
+  if (gameId == 'spellingSafari') {
     console.log('spell safaru');
     runSpellSafari();
   }
-  if(gameId=='shapeParade'){
+  if (gameId == 'shapeParade') {
     runShapeParade();
   }
-  if(gameId=='storyBuilder'){
+  if (gameId == 'storyBuilder') {
     runStoryBuilder();
   }
-  if(gameId=='carCounting'){
+  if (gameId == 'carCounting') {
     runCarCount();
   }
-  if(gameId=='animalSorting'){
+  if (gameId == 'animalSorting') {
     runAnimalSort();
   }
 }
@@ -148,8 +148,8 @@ function appear(buttonId) {
   button.style.display = "block"; // or "inline" or any valid display value
 }
 
-async function runFruitFrenzy(){
-  
+async function runFruitFrenzy() {
+
   console.log("here");
   appear("fruitFrenzyScreen");
   await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
@@ -163,94 +163,94 @@ async function runFruitFrenzy(){
     correct = false;
     await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
     speak(count);
-    await fruitMathQuestion(); 
-    if(correct){
+    await fruitMathQuestion();
+    if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
-      await playAudio("audioFiles/generalGame/correct.mp3",1);
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
-    else{
+    else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
-    
-      await  playAudio("audioFiles/generalGame/wrong.mp3",1);
-       await  playAudio("audioFiles/generalGame/correctWas.mp3",2);
-      
-      speak((num1+num2));
+
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
+      speak((num1 + num2));
       await waitForSeconds(.5);
-    } 
+    }
   }
-  if(right>3){
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  if (right > 3) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-     await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/greatJob.mp3",1);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
   }
-  else{
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-    await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/keepPracticing.mp3",2);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
   }
-   await waitForSeconds(2);
+  await waitForSeconds(2);
   clickable = false;
   gameMenu();
 }
-async function runStoryBuilder(){
+async function runStoryBuilder() {
   appear("storyBuilderScreen");
-  
-  answers =  [];
+
+  answers = [];
   await playAudio("audioFiles/storyBuilder/storyBuilderIntro.mp3", 31);
   await playAudio("audioFiles/storyBuilder/q1.mp3", 10);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q2.mp3",6);
+  await playAudio("audioFiles/storyBuilder/q2.mp3", 6);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q3.mp3",4);
+  await playAudio("audioFiles/storyBuilder/q3.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q4.mp3",5);
+  await playAudio("audioFiles/storyBuilder/q4.mp3", 5);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q5.mp3",4);
+  await playAudio("audioFiles/storyBuilder/q5.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q6.mp3",3);
+  await playAudio("audioFiles/storyBuilder/q6.mp3", 3);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
- clickable = false;
+  clickable = false;
   await playAudio("audioFiles/storyBuilder/finished!.mp3", 4)
-  await playAudio("audioFiles/storyBuilder/part1.mp3",3.5);
+  await playAudio("audioFiles/storyBuilder/part1.mp3", 3.5);
   speak(answers[0]);
   await waitForSeconds(2);
-  await playAudio("audioFiles/storyBuilder/part2.mp3",5.5);
+  await playAudio("audioFiles/storyBuilder/part2.mp3", 5.5);
   speak(answers[1]);
   await waitForSeconds(2);
-  await playAudio("audioFiles/storyBuilder/part3.mp3",3.2);
+  await playAudio("audioFiles/storyBuilder/part3.mp3", 3.2);
   speak(answers[2]);
   await waitForSeconds(2);
-  await playAudio("audioFiles/storyBuilder/partt4.mp3",2);
+  await playAudio("audioFiles/storyBuilder/partt4.mp3", 2);
   speak(answers[3]);
   await waitForSeconds(2);
-  await playAudio("audioFiles/storyBuilder/part5.mp3",3);
+  await playAudio("audioFiles/storyBuilder/part5.mp3", 3);
   speak(answers[4]);
   await waitForSeconds(2);
-  await playAudio("audioFiles/storyBuilder/part6.mp3",2.4);
+  await playAudio("audioFiles/storyBuilder/part6.mp3", 2.4);
   speak(answers[5]);
   await waitForSeconds(2);
 
   gameMenu();
 }
-async function runAnimalSort(){
+async function runAnimalSort() {
   count = 0;
 
   console.log("here");
@@ -258,48 +258,48 @@ async function runAnimalSort(){
   await playAudio("audioFiles/animalSort/animalSortIntro.mp3", 24);
   roundCount = 3;
   clickable = false;
-  var right = 0; 
+  var right = 0;
   while (count < roundCount) {
     count++;
     clickable = false;
     correct = false;
     await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
     speak(count);
-    await animalSortQuestion(); 
-    if(correct){
+    await animalSortQuestion();
+    if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
-      await playAudio("audioFiles/generalGame/correct.mp3",1);
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
-    else{
+    else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
-      await  playAudio("audioFiles/generalGame/wrong.mp3",1);
-   
-    } 
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+
+    }
   }
-  if(right>=2){
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  if (right >= 2) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-     await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/greatJob.mp3",1);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
   }
-  else{
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-    await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/keepPracticing.mp3",2);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
   }
-   await waitForSeconds(2);
+  await waitForSeconds(2);
   clickable = false;
   gameMenu();
 }
 
 
-async function runShapeParade(){
+async function runShapeParade() {
   count = 0;
 
   console.log("here");
@@ -307,51 +307,51 @@ async function runShapeParade(){
   await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 23);
   roundCount = 3;
   clickable = false;
-  var right = 0; 
+  var right = 0;
   while (count < roundCount) {
     count++;
     clickable = false;
     correct = false;
     await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
     speak(count);
-    await shapeParadeQuestion(); 
-    if(correct){
+    await shapeParadeQuestion();
+    if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
-      await playAudio("audioFiles/generalGame/correct.mp3",1);
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
-    else{
+    else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
-      await  playAudio("audioFiles/generalGame/wrong.mp3",1);
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
 
-    
-    await  playAudio("audioFiles/generalGame/correctWas.mp3",1.5);
-    speak(selectedShape.sides);
-    await waitForSeconds(1);
 
-    } 
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 1.5);
+      speak(selectedShape.sides);
+      await waitForSeconds(1);
+
+    }
   }
-  if(right>=2){
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  if (right >= 2) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-     await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/greatJob.mp3",1);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
   }
-  else{
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-    await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/keepPracticing.mp3",2);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
   }
-   await waitForSeconds(2);
+  await waitForSeconds(2);
   clickable = false;
   gameMenu();
 }
-async function runSpellSafari(){
+async function runSpellSafari() {
   count = 0;
 
   console.log("here");
@@ -366,44 +366,44 @@ async function runSpellSafari(){
     correct = false;
     await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
     speak(count);
-    await spellQuestion(); 
-    if(correct){
+    await spellQuestion();
+    if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
-      await playAudio("audioFiles/generalGame/correct.mp3",1);
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
-    else{
+    else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
-      await  playAudio("audioFiles/generalGame/wrong.mp3",1);
-       await  playAudio("audioFiles/generalGame/correctWas.mp3",2);
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
 
       speak(splitWordWithSpaces(word));
       await waitForSeconds(3);
-    } 
+    }
   }
-  if(right>3){
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  if (right > 3) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-     await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/greatJob.mp3",1);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
   }
-  else{
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-    await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/keepPracticing.mp3",2);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
   }
-   await waitForSeconds(2);
+  await waitForSeconds(2);
   clickable = false;
   gameMenu();
 }
 
 
-async function runCarCount(){
+async function runCarCount() {
   count = 0;
 
   console.log("here");
@@ -418,44 +418,44 @@ async function runCarCount(){
     correct = false;
     await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
     speak(count);
-    await carCountQuestion(); 
-    if(correct){
+    await carCountQuestion();
+    if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
-      await playAudio("audioFiles/generalGame/correct.mp3",1);
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
-    else{
+    else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
-      await  playAudio("audioFiles/generalGame/wrong.mp3",1);
-       await  playAudio("audioFiles/generalGame/correctWas.mp3",2);
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
 
       speak(carTotal);
       await waitForSeconds(.5);
-    } 
+    }
   }
-  if(right>=2){
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  if (right >= 2) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-     await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/greatJob.mp3",1);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
   }
-  else{
-    await playAudio("audioFiles/generalGame/youGot.mp3",1);
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
     speak(right);
-     await waitForSeconds(.5);
-    await playAudio("audioFiles/generalGame/questionsCorrect.mp3",1);
-    await playAudio("audioFiles/generalGame/keepPracticing.mp3",2);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
   }
-   await waitForSeconds(2);
+  await waitForSeconds(2);
   clickable = false;
   gameMenu();
 }
 
 
-async function runBlastOff(){
+async function runBlastOff() {
   count = 0;
 
   console.log("here");
@@ -470,64 +470,64 @@ async function runBlastOff(){
     correct = false;
     await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
     speak(count);
-    await mathQuestion(); 
-    if(correct){
+    await mathQuestion();
+    if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
       var amount = Math.floor(Math.random() * 15) + 15;
-      distance  = distance+amount;
-      await playAudio("audioFiles/gameNames/blastOff/correctQuestion.mp3",3);
+      distance = distance + amount;
+      await playAudio("audioFiles/gameNames/blastOff/correctQuestion.mp3", 3);
       speak(amount);
-       await waitForSeconds(.5);
-      await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
+      await waitForSeconds(.5);
+      await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3", 2);
 
     }
-    else{
+    else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
       var amount = Math.floor(Math.random() * 5) + 5;
-      distance  = distance+amount;
-      await playAudio("audioFiles/gameNames/blastOff/wrongQuestion.mp3",2.7);
+      distance = distance + amount;
+      await playAudio("audioFiles/gameNames/blastOff/wrongQuestion.mp3", 2.7);
       speak(amount);
       await waitForSeconds(.5);
-      await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
-await playAudio("audioFiles/gameNames/blastOff/correctWas.mp3", 2)
-      speak((num1+num2));
+      await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3", 2);
+      await playAudio("audioFiles/gameNames/blastOff/correctWas.mp3", 2)
+      speak((num1 + num2));
       await waitForSeconds(.5);
-    } 
+    }
   }
-  if(distance>=100){
-    await playAudio("audioFiles/gameNames/blastOff/congratsPart1.mp3",3);
+  if (distance >= 100) {
+    await playAudio("audioFiles/gameNames/blastOff/congratsPart1.mp3", 3);
     speak(distance);
-     await waitForSeconds(1);
-    await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
+    await waitForSeconds(1);
+    await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3", 2);
   }
-  else{
-     await playAudio("audioFiles/gameNames/blastOff/failPart1.mp3",4.5);
+  else {
+    await playAudio("audioFiles/gameNames/blastOff/failPart1.mp3", 4.5);
     speak(distance);
-     await waitForSeconds(1);
-    await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3",2);
+    await waitForSeconds(1);
+    await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3", 2);
   }
   clickable = false;
   await waitForSeconds(3);
   gameMenu();
 }
-async function shapeParadeQuestion(){
- 
+async function shapeParadeQuestion() {
+
   await waitForSeconds(1);
   await playAudio("audioFiles/shapeParade/how many.mp3", 2.9);
   const randomIndex = Math.floor(Math.random() * shapes.length);
-   selectedShape = shapes[randomIndex];
+  selectedShape = shapes[randomIndex];
   speak(selectedShape.name);
   await waitForSeconds(1);
-  
+
   await playAudio("audioFiles/generalGame/clickOrTap.mp3", 3);
   clickable = true;
   await waitForRecognitionResult();
-  if(toNum(input)==selectedShape.sides){
-     correct = true;
+  if (toNum(input) == selectedShape.sides) {
+    correct = true;
   }
   clickable = false;
 }
-async function spellQuestion(){
+async function spellQuestion() {
   generateWord();
   await playAudio("audioFiles/generalGame/howSpell.mp3", 1.7);
   speak(word);
@@ -536,18 +536,18 @@ async function spellQuestion(){
   await waitForRecognitionResult();
   formatString(input);
 
-  if(word==input){
+  if (word == input) {
     correct = true;
   }
 }
 function splitWordWithSpaces(word) {
-    // Split the word into an array of letters
-    const lettersArray = word.split('');
+  // Split the word into an array of letters
+  const lettersArray = word.split('');
 
-    // Join the letters back together with spaces in between
-    const spacedWord = lettersArray.join(' ');
+  // Join the letters back together with spaces in between
+  const spacedWord = lettersArray.join(' ');
 
-    return spacedWord;
+  return spacedWord;
 }
 
 
@@ -562,90 +562,90 @@ async function mathQuestion() {
   await waitForSeconds(1);
   clickable = true;
   await waitForRecognitionResult();
-  if(num1+num2==toNum(input)){
+  if (num1 + num2 == toNum(input)) {
     correct = true;
   }
-  }
-async function animalSortQuestion(){
-    const land = Math.floor(Math.random() * 2) + 1; 
+}
+async function animalSortQuestion() {
+  const land = Math.floor(Math.random() * 2) + 1;
   await waitForSeconds(1);
   await playAudio("audioFiles/animalSort/isA.mp3", 1.5);
-    if(land==1){
-      speak(randomLandAnimal());
-    }
-  else{
+  if (land == 1) {
+    speak(randomLandAnimal());
+  }
+  else {
     speak(randomSeaAnimal());
   }
   await waitForSeconds(1);
   await playAudio("audioFiles/animalSort/seaorland.mp3", 2.3);
-  await playAudio("audioFiles/animalSort/clickandsay.mp3",3.3);
+  await playAudio("audioFiles/animalSort/clickandsay.mp3", 3.3);
   clickable = true;
   await waitForRecognitionResult();
-  if(land==1){
-     if(input.includes("land")){
-       correct = true;
-     }
+  if (land == 1) {
+    if (input.includes("land")) {
+      correct = true;
+    }
   }
-  if(land==2){
-     if(input.includes("ocean")||input.includes("land")){
-       correct = true;
-     }
+  if (land == 2) {
+    if (input.includes("ocean") || input.includes("land")) {
+      correct = true;
+    }
   }
- 
+
 }
 
 async function fruitMathQuestion() {
-  const fruitNames = 
+  const fruitNames =
     ["audioFiles/fruitFrenzy/oranges.mp3", "audioFiles/fruitFrenzy/bananas.mp3", "audioFiles/fruitFrenzy/apples.mp3"];
 
   generateAdditionProblems();
   await waitForSeconds(1);
-  await playAudio("audioFiles/fruitFrenzy/thereAre.mp3",1.2)
+  await playAudio("audioFiles/fruitFrenzy/thereAre.mp3", 1.2)
   await waitForSeconds(.4);
   speak(num1);
-  await waitForSeconds(.3);
+  await waitForSeconds(.7);
   var randomIndex = Math.floor(Math.random() * 3);
 
   await playAudio(fruitNames[randomIndex], .5);
   await waitForSeconds(.5);
-  speak("and"+num2);
+  speak("and" + num2);
   await waitForSeconds(.6);
-  
-   randomIndex = Math.floor(Math.random() * 3);
+
+  randomIndex = Math.floor(Math.random() * 3);
   await playAudio(fruitNames[randomIndex], 1);
   clickable = true;
-  await playAudio("audioFiles/fruitFrenzy/fruitTotal.mp3",1.5)
-  if(count==1){
+  await playAudio("audioFiles/fruitFrenzy/fruitTotal.mp3", 1.5)
+  if (count == 1) {
     await waitForSeconds(.5);
-    playAudio("audioFiles/fruitFrenzy/spaceOrClick.mp3",3)
+    playAudio("audioFiles/fruitFrenzy/spaceOrClick.mp3", 3)
   }
   await waitForRecognitionResult();
-  if(num1+num2==toNum(input)){
+  if (num1 + num2 == toNum(input)) {
     correct = true;
   }
-  }
+}
 
 
 
 async function carCountQuestion() {
- 
 
-  carTotal = Math.floor(Math.random() * 5)+1;
+
+  carTotal = Math.floor(Math.random() * 5) + 1;
   await waitForSeconds(1);
-  await playAudio("audioFiles/carCount/carInformation.mp3",4);
+  await playAudio("audioFiles/carCount/carInformation.mp3", 4);
   for (let i = 0; i < carTotal; i++) {
-await playAudio("audioFiles/carCount/carDrive.wav",4);
+    await playAudio("audioFiles/carCount/carDrive.wav", 4);
   }
 
-    await waitForSeconds(.1);
-    playAudio("audioFiles/fruitFrenzy/spaceOrClick.mp3",3)
-  
-  clickable =true;
+  await waitForSeconds(.1);
+  playAudio("audioFiles/fruitFrenzy/spaceOrClick.mp3", 3)
+
+  clickable = true;
   await waitForRecognitionResult();
-  if(carTotal==toNum(input)){
+  if (carTotal == toNum(input)) {
     correct = true;
   }
-  }
+}
 document.body.onclick = function() {
 
   console.log(clickable + " in function");
@@ -676,18 +676,18 @@ async function waitForRecognitionResult() {
     recognition.onresult = async function(event) {
       input = event.results[0][0].transcript;
       console.log(input);
-      resolve(); 
+      resolve();
     }
   });
 }
 
 function playAudio(audio) {
-    audio.play();
+  audio.play();
 }
 
 function stopAudio(audio) {
-    audio.pause();
-    audio.currentTime = 0; // Resets audio to beginning
+  audio.pause();
+  audio.currentTime = 0; // Resets audio to beginning
 }
 
 recognition.onerror = function() {
@@ -730,7 +730,7 @@ function speak(s) {
 
 
 const easyWords = [
-"cat", "dog", "hat", "moon", "star", "fish", "bird", "tree", "cake", "ball", "duck", "frog", "desk", "door", "home", "lamp", "leaf", "milk", "nest", "park", "soap", "sock", "chair", "table", "mouse", "horse", "apple", "banana", "lemon", "grape", "melon", "orange", "peach", "pear", "cherry", "candy", "pizza", "burger", "apple", "bread", "cheese", "chicken", "pasta", "pizza", "salad", "sauce", "coffee", "juice", "water", "muffin", "butter", "sugar", "honey", "bread", "bottle", "bag", "car", "bus", "bike", "train", "truck", "plane", "boat", "van", "house",  "store", "bank", "park", "zoo", "pool", "beach", "river", "lake", "hill", "city", "town", "school", "park", "farm", "forest", "ocean", "planet", "moon", "star", "sky", "cloud", "rain", "snow", "wind", "storm", "light", "dark", "cold", "hot", "warm", "cool", "wet", "dry", "fast", "slow", "quick", "easy", "hard", "soft", "loud",  "quiet", "big", "small", "short", "tall", "thick", "thin", "skinny", "young", "old", "new", "fresh", "clean", "dirty", "happy", "sad", "angry", "scared", "tired", "sleepy", "purple", "green", "brown", "orange", "yellow", "pink",  "black", "fun", "boring", "nice", "mean", "kind", "rude", "good", "bad", "right", "wrong", "true", "false", "smart", "dumb", "brave", "coward",  "rich", "safe", "danger", "healthy", "sick", "alive", "dead", "beautiful",  "ugly", "pretty", "handsome", "clever", "stupid", "calm", "wild", "friendly",  "happy", "merry", "joyful", "sad", "gloomy", "serious", "silly", "laugh",  "cry", "smile", "frown", "wink", "nod", "shake", "blink", "yawn", "stretch",  "jump", "run", "walk", "crawl", "swim", "fly", "climb", "fall", "ride", "drive", "row", "lift", "push", "pull", "throw", "catch", "kick", "hit", "fight", "argue", "agree", "disagree", "listen", "speak", "talk", "whisper",  "shout", "read", "write", "draw", "paint", "color", "build", "destroy", "fix", "break", "open", "close", "start", "finish", "stop", "go", "stay", "leave", "enter", "exit", "find", "lose", "win", "lose", "earn", "spend", "buy", "sell", "pay", "receive", "give", "take", "keep", "throw", "catch", "drop", "pick", "put", "move", "turn", "lift", "pull", "push", "carry", "hold", "touch", "feel", "watch", "listen", "smell", "taste", "drink", "sleep", "dream", "wake", "work", "rest", "play", "study", "learn", "teach", "think", "forget", "know","believe", "doubt", "hope", "wish", "imagine", "create", "invent", "discover",  "explore", "solve", "plan", "decide", "choose", "change", "stay",  "remain", "live", "born", "grow", "develop", "age", "mature", "youth", "adult", "child", "baby", "parent", "mother", "father", "brother", "sister", "friend", "enemy", "stranger", "teacher", "student", "doctor", "nurse", "engineer", "artist", "musician", "actor", "writer", "singer",  "dancer", "chef", "waiter", "driver",  "pilot", "captain", "sailor", "farmer",  "soldier",  "fireman",  "lawyer", "judge", "athlete", "coach",  "referee", "judge",
+  "cat", "dog", "hat", "moon", "star", "fish", "bird", "tree", "cake", "ball", "duck", "frog", "desk", "door", "home", "lamp", "leaf", "milk", "nest", "park", "soap", "sock", "chair", "table", "mouse", "horse", "apple", "banana", "lemon", "grape", "melon", "orange", "peach", "pear", "cherry", "candy", "pizza", "burger", "apple", "bread", "cheese", "chicken", "pasta", "pizza", "salad", "sauce", "coffee", "juice", "water", "muffin", "butter", "sugar", "honey", "bread", "bottle", "bag", "car", "bus", "bike", "train", "truck", "plane", "boat", "van", "house", "store", "bank", "park", "zoo", "pool", "beach", "river", "lake", "hill", "city", "town", "school", "park", "farm", "forest", "ocean", "planet", "moon", "star", "sky", "cloud", "rain", "snow", "wind", "storm", "light", "dark", "cold", "hot", "warm", "cool", "wet", "dry", "fast", "slow", "quick", "easy", "hard", "soft", "loud", "quiet", "big", "small", "short", "tall", "thick", "thin", "skinny", "young", "old", "new", "fresh", "clean", "dirty", "happy", "sad", "angry", "scared", "tired", "sleepy", "purple", "green", "brown", "orange", "yellow", "pink", "black", "fun", "boring", "nice", "mean", "kind", "rude", "good", "bad", "right", "wrong", "true", "false", "smart", "dumb", "brave", "coward", "rich", "safe", "danger", "healthy", "sick", "alive", "dead", "beautiful", "ugly", "pretty", "handsome", "clever", "stupid", "calm", "wild", "friendly", "happy", "merry", "joyful", "sad", "gloomy", "serious", "silly", "laugh", "cry", "smile", "frown", "wink", "nod", "shake", "blink", "yawn", "stretch", "jump", "run", "walk", "crawl", "swim", "fly", "climb", "fall", "ride", "drive", "row", "lift", "push", "pull", "throw", "catch", "kick", "hit", "fight", "argue", "agree", "disagree", "listen", "speak", "talk", "whisper", "shout", "read", "write", "draw", "paint", "color", "build", "destroy", "fix", "break", "open", "close", "start", "finish", "stop", "go", "stay", "leave", "enter", "exit", "find", "lose", "win", "lose", "earn", "spend", "buy", "sell", "pay", "receive", "give", "take", "keep", "throw", "catch", "drop", "pick", "put", "move", "turn", "lift", "pull", "push", "carry", "hold", "touch", "feel", "watch", "listen", "smell", "taste", "drink", "sleep", "dream", "wake", "work", "rest", "play", "study", "learn", "teach", "think", "forget", "know", "believe", "doubt", "hope", "wish", "imagine", "create", "invent", "discover", "explore", "solve", "plan", "decide", "choose", "change", "stay", "remain", "live", "born", "grow", "develop", "age", "mature", "youth", "adult", "child", "baby", "parent", "mother", "father", "brother", "sister", "friend", "enemy", "stranger", "teacher", "student", "doctor", "nurse", "engineer", "artist", "musician", "actor", "writer", "singer", "dancer", "chef", "waiter", "driver", "pilot", "captain", "sailor", "farmer", "soldier", "fireman", "lawyer", "judge", "athlete", "coach", "referee", "judge",
 ];
 
 function randomLandAnimal() {
@@ -841,7 +841,7 @@ function toNum(num) {
 }
 
 
-async function playAudio(audio, len){
+async function playAudio(audio, len) {
   var a = new Audio(audio);
   a.play();
   await waitForSeconds(len);
