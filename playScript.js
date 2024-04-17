@@ -728,10 +728,13 @@ function waitForSeconds(seconds) {
 }
 
 function speak(s) {
+  //some browsers are special so... ijust did this hopefully this works!
   utterance = new SpeechSynthesisUtterance(s);
-  voices = speechSynthesis.getVoices()
-  utterance.voice = voices[2];
+ // voices = speechSynthesis.getVoices()
+ // utterance.voice = voices[2];
   speechSynthesis.speak(utterance);
+
+  
 }
 
 
