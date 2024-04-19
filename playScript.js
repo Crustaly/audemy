@@ -1,3 +1,5 @@
+
+
 function changeButtonBorder(buttonId) {
   buttonId.classList.add('custom-border');
 }
@@ -24,6 +26,7 @@ var hints = document.querySelector('.hints');
 
 var roundCount = 1;
 var clickable = false;
+var insideGame = false;
 var input = "";
 var correct = false;
 
@@ -84,7 +87,7 @@ function removeMenuButtons() {
   disappear('carCounting');
   disappear('shapeParade');
   disappear('spellingSafari');
-  disappear('animalSort');
+  disappear('animalSorting');
   disappear('storyBuilder');
   disappear('spellTitle');
   disappear('mathTitle');
@@ -98,7 +101,7 @@ function gameMenu() {
   appear('carCounting');
   appear('shapeParade');
   appear('spellingSafari');
-  appear('animalSort');
+  appear('animalSorting');
   appear('storyBuilder');
   appear('spellTitle');
   appear('mathTitle');
@@ -113,29 +116,39 @@ function gameMenu() {
 
 }
 function inGame(gameId) {
-  removeMenuButtons();
+  insideGame = true;
+  //remove menu buttons is in each function because there are cases where something is passed here that is not a game.
   if (gameId == "blastOff") {
     runBlastOff();
+    removeMenuButtons();
   }
   if (gameId == 'fruitFrenzy') {
     runFruitFrenzy();
+    removeMenuButtons();
   }
   if (gameId == 'spellingSafari') {
     console.log('spell safaru');
     runSpellSafari();
+    removeMenuButtons();
   }
   if (gameId == 'shapeParade') {
     runShapeParade();
+    removeMenuButtons();
   }
   if (gameId == 'storyBuilder') {
     runStoryBuilder();
+    removeMenuButtons();
   }
   if (gameId == 'carCounting') {
     runCarCount();
+    removeMenuButtons();
   }
   if (gameId == 'animalSorting') {
     runAnimalSort();
+    removeMenuButtons();
   }
+ 
+    insideGame = false;
 }
 function disappear(buttonId) {
   var button = document.getElementById(buttonId);
@@ -653,24 +666,48 @@ async function carCountQuestion() {
 }
 document.body.onclick = function() {
 
-  console.log(clickable + " in function");
+
   if (clickable) {
     recognition.start();
     console.log('Ready to receive an answer.');
 
   }
-}
-document.body.onkeydown = function(event) {
+  else if(!insideGame){
 
-  if (event.code === 'Space') {
-    console.log(clickable + " in function");
-    if (clickable) {
-      recognition.start();
-      console.log('Ready to receive an answer.');
+            console.log('Active element:', document.activeElement);
+
+         inGame(document.activeElement.id);
+        }
     }
-    // Prevent the default action (scrolling the page)
-    event.preventDefault();
-  }
+  
+
+document.body.onkeydown = function(event) {
+    if (clickable) {
+        // Handle when clickable is true
+        if (event.code === 'Space' || event.code === 'ArrowUp' || event.code === 'ArrowDown' || event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
+            recognition.start();
+            console.log('Ready to receive an answer.');
+            event.preventDefault(); // Prevent default behavior
+        }
+    } else {
+        // Handle when clickable is false
+        console.log('Key pressed:', event.key);
+        if (event.key === ' ') {
+            // Prevent the default action (e.g., scrolling the page)
+            event.preventDefault();
+
+            // Log the currently focused element
+            console.log('Active element:', document.activeElement);
+
+            // Check if the focused element is a button
+            if (document.activeElement && document.activeElement.tagName.toLowerCase() === 'button') {
+                console.log('Triggering button click:', document.activeElement.id);
+
+                // Trigger the button's click event to simulate a click
+                document.activeElement.click();
+            }
+        }
+    }
 };
 
 
