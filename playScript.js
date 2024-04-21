@@ -1,5 +1,7 @@
 
 
+
+
 function changeButtonBorder(buttonId) {
   buttonId.classList.add('custom-border');
 }
@@ -8,9 +10,12 @@ function removeButtonBorder(buttonId) {
 }
 
 
+
+
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || window.webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+
 
 var recognition = new SpeechRecognition();
 var stop = false;
@@ -20,9 +25,12 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 
+
+
 var diagnostic = document.querySelector('.output');
 var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
+
 
 var roundCount = 1;
 var clickable = false;
@@ -30,8 +38,10 @@ var insideGame = false;
 var input = "";
 var correct = false;
 
+
 var menu = false;
 var selectedShape = "";
+
 
 var num1;
 var num2;
@@ -40,11 +50,14 @@ var count = 0;
 var right = 0;
 var answers = [];
 
+
 var carTotal = 0;
+
 
 /*
 document.addEventListener("DOMContentLoaded", function() {
   const buttons = document.querySelectorAll('.game-button');
+
 
   buttons.forEach(button => {
     button.addEventListener('mouseenter', function() {
@@ -52,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const audio = document.getElementById(audioId);
       audio.play();
     });
+
 
     button.addEventListener('mouseleave', function() {
       const audioId = button.dataset.audio;
@@ -81,6 +95,7 @@ function removeImages() {
   disappear('shapeParadeScreen');
   disappear('storyBuilderScreen');
 
+
 }
 function removeMenuButtons() {
   disappear('fruitFrenzy');
@@ -95,6 +110,7 @@ function removeMenuButtons() {
   // disappear('mainInformation');  
   menu = false;
 }
+
 
 function gameMenu() {
   appear('fruitFrenzy');
@@ -113,6 +129,7 @@ function gameMenu() {
   // menu = true;
   //  newButton = buttonsGrid[0][0]; 
   //playNewAudio(document.getElementById('fruitFrenzyAudio'));
+
 
 }
 function inGame(gameId) {
@@ -147,7 +164,7 @@ function inGame(gameId) {
     runAnimalSort();
     removeMenuButtons();
   }
- 
+
     insideGame = false;
 }
 function disappear(buttonId) {
@@ -155,17 +172,20 @@ function disappear(buttonId) {
   button.style.display = "none";
 }
 
+
 function appear(buttonId) {
   console.log(buttonId);
   var button = document.getElementById(buttonId);
   button.style.display = "block"; // or "inline" or any valid display value
 }
 
+
 async function runFruitFrenzy() {
+
 
   console.log("here");
   appear("fruitFrenzyScreen");
-  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
+//  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
   roundCount = 5;
   clickable = false;
   var right = 0;
@@ -180,14 +200,17 @@ async function runFruitFrenzy() {
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
     else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/wrong.mp3", 1);
       await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
 
       speak((num1 + num2));
       await waitForSeconds(.5);
@@ -214,29 +237,36 @@ async function runFruitFrenzy() {
 async function runStoryBuilder() {
   appear("storyBuilderScreen");
 
+
   answers = [];
-  await playAudio("audioFiles/storyBuilder/storyBuilderIntro.mp3", 31);
-  await playAudio("audioFiles/storyBuilder/q1.mp3", 10);
+  //await playAudio("audioFiles/storyBuilder/storyBuilderIntro.mp3", 31);
+  await playAudio("audioFiles/storyBuilder/q1.mp3", 5);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q2.mp3", 6);
+  await playAudio("audioFiles/storyBuilder/q2.mp3", 3);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q3.mp3", 4);
+  await playAudio("audioFiles/storyBuilder/q3.mp3", 2);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
   await playAudio("audioFiles/storyBuilder/q4.mp3", 5);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q5.mp3", 4);
+  await playAudio("audioFiles/storyBuilder/q5.mp3", 2);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
-  await playAudio("audioFiles/storyBuilder/q6.mp3", 3);
+  await playAudio("audioFiles/storyBuilder/q6.mp3", 2);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   answers.push(input);
@@ -261,14 +291,16 @@ async function runStoryBuilder() {
   speak(answers[5]);
   await waitForSeconds(2);
 
+
   gameMenu();
 }
 async function runAnimalSort() {
   count = 0;
 
+
   console.log("here");
   appear("animalSortScreen");
-  await playAudio("audioFiles/animalSort/animalSortIntro.mp3", 24);
+ // await playAudio("audioFiles/animalSort/animalSortIntro.mp3", 24);
   roundCount = 3;
   clickable = false;
   var right = 0;
@@ -282,13 +314,16 @@ async function runAnimalSort() {
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
     else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+
 
     }
   }
@@ -312,12 +347,15 @@ async function runAnimalSort() {
 }
 
 
+
+
 async function runShapeParade() {
   count = 0;
 
+
   console.log("here");
   appear("shapeParadeScreen");
-  await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 23);
+ // await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 23);
   roundCount = 3;
   clickable = false;
   var right = 0;
@@ -331,18 +369,23 @@ async function runShapeParade() {
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
     else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+
+
 
 
       await playAudio("audioFiles/generalGame/correctWas.mp3", 1.5);
       speak(selectedShape.sides);
       await waitForSeconds(1);
+
 
     }
   }
@@ -367,9 +410,10 @@ async function runShapeParade() {
 async function runSpellSafari() {
   count = 0;
 
+
   console.log("here");
   appear("spellSafariScreen");
-  await playAudio("audioFiles/spellSafari/safariIntro.mp3", 21);
+//  await playAudio("audioFiles/spellSafari/safariIntro.mp3", 21);
   roundCount = 5;
   clickable = false;
   var right = 0;
@@ -383,14 +427,17 @@ async function runSpellSafari() {
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
     else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/wrong.mp3", 1);
       await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
 
       speak(splitWordWithSpaces(word));
       await waitForSeconds(3);
@@ -416,12 +463,15 @@ async function runSpellSafari() {
 }
 
 
+
+
 async function runCarCount() {
   count = 0;
 
+
   console.log("here");
   appear("carCountScreen");
-  await playAudio("audioFiles/carCount/carCountIntro.mp3", 12);
+//  await playAudio("audioFiles/carCount/carCountIntro.mp3", 12);
   roundCount = 3;
   clickable = false;
   var right = 0;
@@ -435,14 +485,17 @@ async function runCarCount() {
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
     else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
 
+
       await playAudio("audioFiles/generalGame/wrong.mp3", 1);
       await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
 
       speak(carTotal);
       await waitForSeconds(.5);
@@ -468,12 +521,15 @@ async function runCarCount() {
 }
 
 
+
+
 async function runBlastOff() {
   count = 0;
 
+
   console.log("here");
   appear("blastOffScreen");
-  await playAudio("audioFiles/gameNames/blastOff/blastOffIntro.mp3", 40);
+ // await playAudio("audioFiles/gameNames/blastOff/blastOffIntro.mp3", 40);
   roundCount = 8;
   clickable = false;
   var distance = 0;
@@ -492,6 +548,7 @@ async function runBlastOff() {
       speak(amount);
       await waitForSeconds(.5);
       await playAudio("audioFiles/gameNames/blastOff/kilometers.mp3", 2);
+
 
     }
     else {
@@ -525,6 +582,7 @@ async function runBlastOff() {
 }
 async function shapeParadeQuestion() {
 
+
   await waitForSeconds(1);
   await playAudio("audioFiles/shapeParade/how many.mp3", 2.9);
   const randomIndex = Math.floor(Math.random() * shapes.length);
@@ -532,7 +590,8 @@ async function shapeParadeQuestion() {
   speak(selectedShape.name);
   await waitForSeconds(1);
 
-  await playAudio("audioFiles/generalGame/clickOrTap.mp3", 3);
+
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   if (toNum(input) == selectedShape.sides) {
@@ -545,9 +604,11 @@ async function spellQuestion() {
   await playAudio("audioFiles/generalGame/howSpell.mp3", 1.7);
   speak(word);
   await waitForSeconds(1);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   formatString(input);
+
 
   if (word == input) {
     correct = true;
@@ -557,11 +618,15 @@ function splitWordWithSpaces(word) {
   // Split the word into an array of letters
   const lettersArray = word.split('');
 
+
   // Join the letters back together with spaces in between
   const spacedWord = lettersArray.join(' ');
 
+
   return spacedWord;
 }
+
+
 
 
 async function mathQuestion() {
@@ -592,8 +657,9 @@ async function animalSortQuestion() {
     speak(randomSeaAnimal());
   }
   await waitForSeconds(1);
-  await playAudio("audioFiles/animalSort/seaorland.mp3", 2.3);
-  await playAudio("audioFiles/animalSort/clickandsay.mp3", 3.3);
+  await playAudio("audioFiles/animalSort/seaorland.mp3", 2.8);
+  await playAudio("audioFiles/animalSort/sayoceanorland.mp3", 7);
+   await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   console.log(input);
@@ -608,11 +674,14 @@ async function animalSortQuestion() {
     }
   }
 
+
 }
+
 
 async function fruitMathQuestion() {
   const fruitNames =
     ["audioFiles/fruitFrenzy/oranges.mp3", "audioFiles/fruitFrenzy/bananas.mp3", "audioFiles/fruitFrenzy/apples.mp3"];
+
 
   generateAdditionProblems();
   await waitForSeconds(1);
@@ -622,10 +691,12 @@ async function fruitMathQuestion() {
   await waitForSeconds(.7);
   var randomIndex = Math.floor(Math.random() * 3);
 
+
   await playAudio(fruitNames[randomIndex], .5);
   await waitForSeconds(.5);
   speak("and" + num2);
   await waitForSeconds(.6);
+
 
   randomIndex = Math.floor(Math.random() * 3);
   await playAudio(fruitNames[randomIndex], 1);
@@ -633,7 +704,7 @@ async function fruitMathQuestion() {
   await playAudio("audioFiles/fruitFrenzy/fruitTotal.mp3", 1.5)
   if (count == 1) {
     await waitForSeconds(.5);
-    playAudio("audioFiles/fruitFrenzy/spaceOrClick.mp3", 3)
+    await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   }
   await waitForRecognitionResult();
   console.log(toNum(input));
@@ -645,7 +716,12 @@ async function fruitMathQuestion() {
 
 
 
+
+
+
 async function carCountQuestion() {
+
+
 
 
   carTotal = Math.floor(Math.random() * 5) + 1;
@@ -655,8 +731,10 @@ async function carCountQuestion() {
     await playAudio("audioFiles/carCount/carDrive.wav", 4);
   }
 
+
   await waitForSeconds(.1);
-  playAudio("audioFiles/fruitFrenzy/spaceOrClick.mp3", 3)
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
+
 
   clickable = true;
   await waitForRecognitionResult();
@@ -664,30 +742,55 @@ async function carCountQuestion() {
     correct = true;
   }
 }
+/*
 document.body.onclick = function() {
 
 
+console.log("HOL:Y POOP");
   if (clickable) {
     recognition.start();
     console.log('Ready to receive an answer.');
 
+
   }
   else if(!insideGame){
 
-            console.log('Active element:', document.activeElement);
+
+            console.log('Active element bri:', document.activeElement);
+
 
          inGame(document.activeElement.id);
         }
     }
-  
+
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === ' ') {
+      console.log('Space key pressed.');
+      // Add your code here to handle the space key being pressed.
+      if (clickable) {
+        recognition.start();
+        console.log('Ready to receive an answer.');
+      } else if (!insideGame) {
+        console.log('Active element:', document.activeElement);
+        inGame(document.activeElement.id);
+      }
+    }
+  });
+
 
 document.body.onkeydown = function(event) {
+
+
+  console.log(event.key+"HERE");
     if (clickable) {
         // Handle when clickable is true
-        if (event.code === 'Space' || event.code === 'ArrowUp' || event.code === 'ArrowDown' || event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
+        if (event.key === ' ') {
+
+
+          event.preventDefault(); 
             recognition.start();
-            console.log('Ready to receive an answer.');
-            event.preventDefault(); // Prevent default behavior
+            // Prevent default behavior
         }
     } else {
         // Handle when clickable is false
@@ -696,12 +799,16 @@ document.body.onkeydown = function(event) {
             // Prevent the default action (e.g., scrolling the page)
             event.preventDefault();
 
+
             // Log the currently focused element
-            console.log('Active element:', document.activeElement);
+         //   console.log('Active element:', document.activeElement);
+
 
             // Check if the focused element is a button
             if (document.activeElement && document.activeElement.tagName.toLowerCase() === 'button') {
+              console.log("POOP");
                 console.log('Triggering button click:', document.activeElement.id);
+
 
                 // Trigger the button's click event to simulate a click
                 document.activeElement.click();
@@ -709,9 +816,82 @@ document.body.onkeydown = function(event) {
         }
     }
 };
+*/
+/*
+document.body.onkeydown = function(event) {
+
+
+  if (event.code === 'Space') {
+    console.log(clickable + " in function");
+    if (clickable) {
+      recognition.start();
+      console.log('Ready to receive an answer.');
+    }
+    // Prevent the default action (scrolling the page)
+    event.preventDefault();
+  }
+};
+*/
+/*
+document.body.onclick = function() {
+
+  console.log(clickable + " in function");
+  if (clickable) {
+    recognition.start();
+    console.log('Ready to receive an answer.');
+
+  }
+}
+document.body.onkeydown = function(event) {
+console.log("IM HERE");
+  if (event.code === 'Space') {
+    event.preventDefault();
+    console.log(clickable + " in function");
+    if (clickable) {
+      recognition.start();
+      console.log('Ready to receive an answer.');
+    }
+    else{
+      
+    }
+    // Prevent the default action (scrolling the page)
+    
+  }
+};
+*/
+function handleClickOrSpace(event) {
+  // Check if the event is a click event
+  console.log(event.key);
+  if (event.type === 'click'||(event.type === 'keydown' && event.key == 'Shift')) {
+    console.log('You pressed the space bar!');
+    if(clickable){
+       recognition.start();
+    }
+    else if(!insideGame){
+      console.log('Active element bri:', document.activeElement);
+
+
+       inGame(document.activeElement.id);
+    }
+  
+
+  }
+
+  // Check if the event is a keypress event and the key is space bar
+  if (event.type === 'keypress' && event.key === ' ') {
+    // Prevent the default action of the space bar (scrolling the page)
+    event.preventDefault();
+    console.log('You pressed the space bar!');
+
+  }
+}
+document.addEventListener('click', handleClickOrSpace);
+document.addEventListener('keydown', handleClickOrSpace);
+
 
 
 async function waitForRecognitionResult() {
+
 
   console.log("WQIATING");
   return new Promise(resolve => {
@@ -724,14 +904,17 @@ async function waitForRecognitionResult() {
   });
 }
 
+
 function playAudio(audio) {
   audio.play();
 }
+
 
 function stopAudio(audio) {
   audio.pause();
   audio.currentTime = 0; // Resets audio to beginning
 }
+
 
 recognition.onerror = function() {
   speak("Sorry, I didn't catch that. Please click the space bar or tap the screen and try again.");
@@ -741,16 +924,21 @@ recognition.onspeechend = function() {
   recognition.stop();
 }
 
+
 function generateAdditionProblems() {
-  num1 = Math.floor(Math.random() * 10) + 1;
-  num2 = Math.floor(Math.random() * 10) + 1;
+  num1 = Math.floor(Math.random() * 10) + 2;
+  num2 = Math.floor(Math.random() * 10) + 2;
+
 
   console.log(`What is  ` + num1 + ` +  ` + num2);
 
+
 }
+
 
 function generateWord() {
   word = easyWords[Math.floor(Math.random() * easyWords.length)];
+
 
 }
 function formatString(str) {
@@ -758,11 +946,13 @@ function formatString(str) {
   input = formattedStr;
 }
 
+
 function waitForSeconds(seconds) {
   return new Promise(resolve => {
     setTimeout(resolve, seconds * 1000);
   });
 }
+
 
 function speak(s) {
   //some browsers are special so... ijust did this hopefully this works!
@@ -771,23 +961,31 @@ function speak(s) {
  // utterance.voice = voices[2];
   speechSynthesis.speak(utterance);
 
-  
+
+
 }
+
+
 
 
 const easyWords = [
   "cat", "dog", "hat", "moon", "star", "fish", "bird", "tree", "cake", "ball", "duck", "frog", "desk", "door", "home", "lamp", "leaf", "milk", "nest", "park", "soap", "sock", "chair", "table", "mouse", "horse", "apple", "banana", "lemon", "grape", "melon", "orange", "peach", "pear", "cherry", "candy", "pizza", "burger", "apple", "bread", "cheese", "chicken", "pasta", "pizza", "salad", "sauce", "coffee", "juice", "water", "muffin", "butter", "sugar", "honey", "bread", "bottle", "bag", "car", "bus", "bike", "train", "truck", "plane", "boat", "van", "house", "store", "bank", "park", "zoo", "pool", "beach", "river", "lake", "hill", "city", "town", "school", "park", "farm", "forest", "ocean", "planet", "moon", "star", "sky", "cloud", "rain", "snow", "wind", "storm", "light", "dark", "cold", "hot", "warm", "cool", "wet", "dry", "fast", "slow", "quick", "easy", "hard", "soft", "loud", "quiet", "big", "small", "short", "tall", "thick", "thin", "skinny", "young", "old", "new", "fresh", "clean", "dirty", "happy", "sad", "angry", "scared", "tired", "sleepy", "purple", "green", "brown", "orange", "yellow", "pink", "black", "fun", "boring", "nice", "mean", "kind", "rude", "good", "bad", "right", "wrong", "true", "false", "smart", "dumb", "brave", "coward", "rich", "safe", "danger", "healthy", "sick", "alive", "dead", "beautiful", "ugly", "pretty", "handsome", "clever", "stupid", "calm", "wild", "friendly", "happy", "merry", "joyful", "sad", "gloomy", "serious", "silly", "laugh", "cry", "smile", "frown", "wink", "nod", "shake", "blink", "yawn", "stretch", "jump", "run", "walk", "crawl", "swim", "fly", "climb", "fall", "ride", "drive", "row", "lift", "push", "pull", "throw", "catch", "kick", "hit", "fight", "argue", "agree", "disagree", "listen", "speak", "talk", "whisper", "shout", "read", "write", "draw", "paint", "color", "build", "destroy", "fix", "break", "open", "close", "start", "finish", "stop", "go", "stay", "leave", "enter", "exit", "find", "lose", "win", "lose", "earn", "spend", "buy", "sell", "pay", "receive", "give", "take", "keep", "throw", "catch", "drop", "pick", "put", "move", "turn", "lift", "pull", "push", "carry", "hold", "touch", "feel", "watch", "listen", "smell", "taste", "drink", "sleep", "dream", "wake", "work", "rest", "play", "study", "learn", "teach", "think", "forget", "know", "believe", "doubt", "hope", "wish", "imagine", "create", "invent", "discover", "explore", "solve", "plan", "decide", "choose", "change", "stay", "remain", "live", "born", "grow", "develop", "age", "mature", "youth", "adult", "child", "baby", "parent", "mother", "father", "brother", "sister", "friend", "enemy", "stranger", "teacher", "student", "doctor", "nurse", "engineer", "artist", "musician", "actor", "writer", "singer", "dancer", "chef", "waiter", "driver", "pilot", "captain", "sailor", "farmer", "soldier", "fireman", "lawyer", "judge", "athlete", "coach", "referee", "judge",
 ];
 
+
 function randomLandAnimal() {
 
+
   const randomIndex = Math.floor(Math.random() * landAnimals.length);
+
 
   return landAnimals[randomIndex];
 }
 function randomSeaAnimal() {
 
+
   const randomIndex = Math.floor(Math.random() * seaAnimals.length);
+
 
   return seaAnimals[randomIndex];
 }
@@ -814,6 +1012,7 @@ const landAnimals = [
   'Camel',
   'Goat'
 ];
+
 
 // Array of sea animals
 const seaAnimals = [
@@ -881,7 +1080,7 @@ function toNum(num) {
     return 8;
   } else if (num.includes('nine') || num.includes('9')) {
     return 9;
-  
+
   } else if (num.includes('exit')) {
     return 'exit';
   } else {
@@ -891,11 +1090,15 @@ function toNum(num) {
 
 
 
+
+
+
 async function playAudio(audio, len) {
   var a = new Audio(audio);
   a.play();
   await waitForSeconds(len);
 }
+
 
 const shapes = [
   { name: 'triangle', sides: 3 },
@@ -904,30 +1107,36 @@ const shapes = [
   { name: 'hexagon', sides: 6 },
   { name: 'octagon', sides: 8 },
 
+
 ];
 /*
 const buttonsGrid = [
     [document.getElementById('fruitFrenzy'), document.getElementById('carCounting'), document.getElementById('shapeParade')],
     [document.getElementById('spellingSafari'), document.getElementById('animalSort'), document.getElementById('storyBuilder')],
-    
+
 ];
+
 
 // Create an array of corresponding audio elements
 const audioGrid = [
     [document.getElementById('fruitFrenzyAudio'), document.getElementById('carCountingAudio'), document.getElementById('shapeParadeAudio')],
     [document.getElementById('spellingSafariAudio'), document.getElementById('animalSortAudio'), document.getElementById('storyBuilderAudio')],
-   
+
 ];
+
+
 
 
 let currentRow = 0;
 let currentCol = 0;
+
 
 // Initialize current audio
 let currentAudio = null;
 let  newButton = buttonsGrid[0][0];
 changeButtonBorder(newButton);
 // Function to stop current audio and play new audio
+
 
 function playNewAudio(newAudio) {
   if(menu){
@@ -937,11 +1146,13 @@ function playNewAudio(newAudio) {
         currentAudio.currentTime = 0;
     }
 
+
     // Play new audio and set it as the current audio
     newAudio.play();
     currentAudio = newAudio;
   }
 }
+
 
 // Add event listener for keydown events
 document.addEventListener('keydown', (event) => {
@@ -952,7 +1163,7 @@ document.addEventListener('keydown', (event) => {
         recognition.start();
         console.log('Ready to receive an answer.');
     }
-  
+
     inGame(newButton.id);
     console.log("Space key was pressed and running inGame function");
     event.preventDefault();
@@ -980,16 +1191,21 @@ document.addEventListener('keydown', (event) => {
   changeButtonBorder(newButton);
 
 
+
+
     // Play new audio associated with the new button
     const newAudio = audioGrid[currentRow][currentCol];
     playNewAudio(newAudio);
   changeButtonBorder(audioGrid[currentRow][currentCol]);
 
 
+
+
     // Prevent default action (e.g., scrolling)
     event.preventDefault();
   }
 });
+
 
 // Initialize focus and play sound for the first button
 buttonsGrid[currentRow][currentCol].focus();
