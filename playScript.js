@@ -185,7 +185,7 @@ async function runFruitFrenzy() {
 
   console.log("here");
   appear("fruitFrenzyScreen");
-//  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
+  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
   roundCount = 5;
   clickable = false;
   var right = 0;
@@ -239,7 +239,7 @@ async function runStoryBuilder() {
 
 
   answers = [];
-  //await playAudio("audioFiles/storyBuilder/storyBuilderIntro.mp3", 31);
+  await playAudio("audioFiles/storyBuilder/storyBuilderIntro.mp3", 31);
   await playAudio("audioFiles/storyBuilder/q1.mp3", 5);
   await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
@@ -300,7 +300,7 @@ async function runAnimalSort() {
 
   console.log("here");
   appear("animalSortScreen");
- // await playAudio("audioFiles/animalSort/animalSortIntro.mp3", 24);
+  await playAudio("audioFiles/animalSort/animalSortIntro.mp3", 24);
   roundCount = 3;
   clickable = false;
   var right = 0;
@@ -355,7 +355,7 @@ async function runShapeParade() {
 
   console.log("here");
   appear("shapeParadeScreen");
- // await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 23);
+  await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 23);
   roundCount = 3;
   clickable = false;
   var right = 0;
@@ -413,7 +413,7 @@ async function runSpellSafari() {
 
   console.log("here");
   appear("spellSafariScreen");
-//  await playAudio("audioFiles/spellSafari/safariIntro.mp3", 21);
+  await playAudio("audioFiles/spellSafari/safariIntro.mp3", 21);
   roundCount = 5;
   clickable = false;
   var right = 0;
@@ -471,7 +471,7 @@ async function runCarCount() {
 
   console.log("here");
   appear("carCountScreen");
-//  await playAudio("audioFiles/carCount/carCountIntro.mp3", 12);
+  await playAudio("audioFiles/carCount/carCountIntro.mp3", 12);
   roundCount = 3;
   clickable = false;
   var right = 0;
@@ -529,7 +529,7 @@ async function runBlastOff() {
 
   console.log("here");
   appear("blastOffScreen");
- // await playAudio("audioFiles/gameNames/blastOff/blastOffIntro.mp3", 40);
+  await playAudio("audioFiles/gameNames/blastOff/blastOffIntro.mp3", 40);
   roundCount = 8;
   clickable = false;
   var distance = 0;
