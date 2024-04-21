@@ -742,123 +742,7 @@ async function carCountQuestion() {
     correct = true;
   }
 }
-/*
-document.body.onclick = function() {
 
-
-console.log("HOL:Y POOP");
-  if (clickable) {
-    recognition.start();
-    console.log('Ready to receive an answer.');
-
-
-  }
-  else if(!insideGame){
-
-
-            console.log('Active element bri:', document.activeElement);
-
-
-         inGame(document.activeElement.id);
-        }
-    }
-
-
-  document.addEventListener('keydown', function(event) {
-    if (event.key === ' ') {
-      console.log('Space key pressed.');
-      // Add your code here to handle the space key being pressed.
-      if (clickable) {
-        recognition.start();
-        console.log('Ready to receive an answer.');
-      } else if (!insideGame) {
-        console.log('Active element:', document.activeElement);
-        inGame(document.activeElement.id);
-      }
-    }
-  });
-
-
-document.body.onkeydown = function(event) {
-
-
-  console.log(event.key+"HERE");
-    if (clickable) {
-        // Handle when clickable is true
-        if (event.key === ' ') {
-
-
-          event.preventDefault(); 
-            recognition.start();
-            // Prevent default behavior
-        }
-    } else {
-        // Handle when clickable is false
-        console.log('Key pressed:', event.key);
-        if (event.key === ' ') {
-            // Prevent the default action (e.g., scrolling the page)
-            event.preventDefault();
-
-
-            // Log the currently focused element
-         //   console.log('Active element:', document.activeElement);
-
-
-            // Check if the focused element is a button
-            if (document.activeElement && document.activeElement.tagName.toLowerCase() === 'button') {
-              console.log("POOP");
-                console.log('Triggering button click:', document.activeElement.id);
-
-
-                // Trigger the button's click event to simulate a click
-                document.activeElement.click();
-            }
-        }
-    }
-};
-*/
-/*
-document.body.onkeydown = function(event) {
-
-
-  if (event.code === 'Space') {
-    console.log(clickable + " in function");
-    if (clickable) {
-      recognition.start();
-      console.log('Ready to receive an answer.');
-    }
-    // Prevent the default action (scrolling the page)
-    event.preventDefault();
-  }
-};
-*/
-/*
-document.body.onclick = function() {
-
-  console.log(clickable + " in function");
-  if (clickable) {
-    recognition.start();
-    console.log('Ready to receive an answer.');
-
-  }
-}
-document.body.onkeydown = function(event) {
-console.log("IM HERE");
-  if (event.code === 'Space') {
-    event.preventDefault();
-    console.log(clickable + " in function");
-    if (clickable) {
-      recognition.start();
-      console.log('Ready to receive an answer.');
-    }
-    else{
-      
-    }
-    // Prevent the default action (scrolling the page)
-    
-  }
-};
-*/
 function handleClickOrSpace(event) {
   // Check if the event is a click event
   console.log(event.key);
@@ -867,15 +751,17 @@ function handleClickOrSpace(event) {
     if(clickable){
        recognition.start();
     }
+      
     else if(!insideGame){
       console.log('Active element bri:', document.activeElement);
 
 
-       inGame(document.activeElement.id);
+       inGame(event.target.id);
     }
   
 
   }
+
 
   // Check if the event is a keypress event and the key is space bar
   if (event.type === 'keypress' && event.key === ' ') {
@@ -885,9 +771,10 @@ function handleClickOrSpace(event) {
 
   }
 }
-document.addEventListener('click', handleClickOrSpace);
+
 document.addEventListener('keydown', handleClickOrSpace);
 
+document.addEventListener('click', handleClickOrSpace);
 
 
 async function waitForRecognitionResult() {
