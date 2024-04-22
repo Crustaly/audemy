@@ -160,7 +160,7 @@ function inGame(gameId) {
     runCarCount();
     removeMenuButtons();
   }
-  if (gameId == 'animalSorting') {
+  if (gameId == 'animalSort') {
     runAnimalSort();
     removeMenuButtons();
   }
