@@ -185,7 +185,7 @@ async function runFruitFrenzy() {
 
   console.log("here");
   appear("fruitFrenzyScreen");
-  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 20);
+  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 18);
   roundCount = 5;
   clickable = false;
   var right = 0;
@@ -355,7 +355,7 @@ async function runShapeParade() {
 
   console.log("here");
   appear("shapeParadeScreen");
-  await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 23);
+  await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 25);
   roundCount = 3;
   clickable = false;
   var right = 0;
@@ -413,7 +413,7 @@ async function runSpellSafari() {
 
   console.log("here");
   appear("spellSafariScreen");
-  await playAudio("audioFiles/spellSafari/safariIntro.mp3", 21);
+  await playAudio("audioFiles/spellSafari/safariIntro.mp3", 18);
   roundCount = 5;
   clickable = false;
   var right = 0;
