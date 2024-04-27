@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+   font-family: 'Adlam', sans-serif;
 
   background-color: #ffffff;
 }
@@ -10,6 +10,8 @@ button{
   background:none;
 }
 .title{
+  font-family: 'DynaPuff', sans-serif;
+  padding: 20px; 
   font-size:35px;
 }
 #start {
@@ -116,4 +118,31 @@ h2 {
     border: 2px solid #B25AE2; /* Adjust border width and color as desired */
     box-shadow: 0 0 5px #B25AE2; /* Optional: Add a slight box-shadow for a better visual effect */
     outline: none; /* Keep outline set to none */
+}
+#mathTitle {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center; /* Centered text */
+  color: #000f1f; /* Darker text color */
+  background-color:#ffa552;
+}
+#spellTitle {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center; /* Centered text */
+  color: #000f1f; /* Darker text color */
+  background-color:#0087db;
+}
+footer{
+  background-color: #B25AE2; 
+  color: white; 
+  padding: 20px; 
+  text-align: center;
+
+}
+#mathSection {
+  background-color: #ffd48a; /* Blue background */
+}
+#languageSection {
+  background-color: #8ad0ff; /* Blue background */
 }

@@ -1,81 +1,90 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-   <title>Audemy</title>
-  <link href="playStyle.css" rel="stylesheet" type="text/css" />
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+     <title>Audemy</title>
+    <link href="playStyle.css" rel="stylesheet" type="text/css" />
+    <!-- Link to Google Fonts for Adlam font -->
+    <link href="https://fonts.googleapis.com/css2?family=Adlam&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet">
 
-  <body>
-      <div class="navbar">
-          <div>
-            
-              <img src="gameImages/buttons/logoNav.png" alt="Logo" width="50"  onclick="window.location.reload()">
-          
-          </div>
+    
+  </head>
 
-          <div>
-            
-                <a href="#" onclick="window.location.href = 'https://audemy.org'">Home</a>
+<body>
+  <div class="navbar">
+    <div>
+      <img src="gameImages/buttons/logoNav.png" alt="Logo" width="50" onclick="window.location.reload()">
+    </div>
 
-          </div>
+    <div>
+      <a href="#" onclick="window.location.href = 'https://audemy.org'">Home</a>
+    </div>
+  </div>
+
+  <div class="container" id="mathSection">
+    <section>
+      <h2 id="mathTitle" class="title">Math Games</h2>
+      <div class="game-buttons">
+        <button id='fruitFrenzy'><img data-audio="fruitFrenzyAudio" src="gameImages/buttons/gameButtons/fruitFrenzyButtonv2.png" alt="fruit Frenzy" class="game-button" id="fruitFrenzy"></button>
+        <button id='carCounting'><img data-audio="carCountingAudio" src="gameImages/buttons/gameButtons/carCountButtonv2.png" alt="car Counting" class="game-button" id="carCounting"></button>
+        <button id="shapeParade"><img data-audio="shapeParadeAudio" src="gameImages/buttons/gameButtons/shapeParadeButtonv2.png" alt="shape Parade" class="game-button" id="shapeParade"></button>
       </div>
-    <!---
-     <h2 id = "mainInformation">Welcome to Audemy!<br><br>
-       Make sure your volume is turned on to interact with the game!</h2>
-    <button  onclick="gameMenu()"><img src="gameImages/buttons/playButton.png" alt="startButton" class="start-button" id = "start" ></button>
-    --->
-      <div class="container">
-          <section>
-              <h2 id = "mathTitle" class = "title">Math Games</h2>
-              <div class="game-buttons">
-                <h2 id = 'fruitFrenzy'><button id = 'fruitFrenzy'><img data-audio="fruitFrenzyAudio"src="gameImages/buttons/gameButtons/fruitFrenzyButton.png" alt="fruit Frenzy" class="game-button" id = "fruitFrenzy" ></button></h2>
-                 <h2><button id = 'carCounting'><img data-audio="carCountingAudio" src="gameImages/buttons/gameButtons/carCountButton.png" alt="car Counting" class="game-button" id = "carCounting" ></button> </h2>
-                  <h2><button id = "shapeParade"><img data-audio="shapeParadeAudio" src="gameImages/buttons/gameButtons/shapeParade.png" alt="shape Parade" class="game-button" id = "shapeParade"></button></h2>
-              </div>
-          </section>
-          <section>
-              <h2 id = "spellTitle" class = "title">Spelling Games</h2>
-             <div class="game-buttons">
-               <h2><button id = "spellingSafari"><img data-audio="spellingSafariAudio"src="gameImages/buttons/gameButtons/spellSafariButton.png" alt="spelling Safari" class="game-button" id = "spellingSafari"></button> </h2>
-             <h2><button id = "animalSorting"><img data-audio="animalSortAudio"src="gameImages/buttons/gameButtons/animalSortButton.png" alt="animal Sort" class="game-button" id = "animalSort"  ></button> </h2>
-            <h2><button id = "storyBuilder"><img data-audio="storyBuilderAudio"src="gameImages/buttons/gameButtons/storyBuilderButton.png" alt="story Builder" class="game-button" id = "storyBuilder" ></button>
-              </div></h2>
-          </section>
+    </section>
+  </div>
+
+  <div class="container" id="languageSection">
+    <section>
+      <h2 id="spellTitle" class="title">Spelling Games</h2>
+      <div class="game-buttons">
+        <button id="spellingSafari"><img data-audio="spellingSafariAudio" src="gameImages/buttons/gameButtons/spellingSafariButtonv2.png" alt="spelling Safari" class="game-button" id="spellingSafari"></button>
+        <button id="animalSorting"><img data-audio="animalSortAudio" src="gameImages/buttons/gameButtons/animalSortButtonv2.png" alt="animal Sort" class="game-button" id="animalSort"></button>
+        <button id="storyBuilder"><img data-audio="storyBuilderAudio" src="gameImages/buttons/gameButtons/storyBuilderButtonv2.png" alt="story Builder" class="game-button" id="storyBuilder"></button>
       </div>
-    <div class = "audios">
+    </section>
+  </div>
+
+  <div class="audios">
     <audio id="fruitFrenzyAudio" src="audioFiles/gameNames/newGameNames/fruitFrenzy.mp3"></audio>
-     <audio id="carCountingAudio" src="audioFiles/gameNames/newGameNames/carCount.mp3"></audio>
-     <audio id="shapeParadeAudio" src="audioFiles/gameNames/newGameNames/shapeParade.mp3"></audio>
-     <audio id="spellingSafariAudio" src="audioFiles/gameNames/newGameNames/spellSafari.mp3"></audio>
-     <audio id="animalSortAudio" src="audioFiles/gameNames/newGameNames/animalSort.mp3"></audio>
-     <audio id="storyBuilderAudio" src="audioFiles/gameNames/newGameNames/storyBuilder.mp3"></audio>
-    </div>
+    <audio id="carCountingAudio" src="audioFiles/gameNames/newGameNames/carCount.mp3"></audio>
+    <audio id="shapeParadeAudio" src="audioFiles/gameNames/newGameNames/shapeParade.mp3"></audio>
+    <audio id="spellingSafariAudio" src="audioFiles/gameNames/newGameNames/spellSafari.mp3"></audio>
+    <audio id="animalSortAudio" src="audioFiles/gameNames/newGameNames/animalSort.mp3"></audio>
+    <audio id="storyBuilderAudio" src="audioFiles/gameNames/newGameNames/storyBuilder.mp3"></audio>
+  </div>
 
-    <div>
-      <img src="audioFiles/fruitFrenzy/background.png" alt="" class="screen" id = "fruitFrenzyScreen">
-    </div>
-    <div>
-      <img src="audioFiles/spellSafari/spellSafariScreen.png" alt="" class="screen" id = "spellSafariScreen">
-    </div>
-    <div>
-      <img src="gameImages/gameScreen/blastOffScreen.png" alt="" class="screen" id = "blastOffScreen">
-    </div>
-    <div>
-      <img src="audioFiles/storyBuilder/storyBuilderScreen.png" alt="" class="screen" id = "storyBuilderScreen">
-    </div>
-    <div>
-      <img src="audioFiles/shapeParade/shapeParadeScreen.png" alt="" class="screen" id = "shapeParadeScreen">
-    </div>
-    <div>
-      <img src="audioFiles/carCount/carCountScreen.png" alt="" class="screen" id = "carCountScreen">
-    </div>
-    <div>
-      <img src="audioFiles/animalSort/animalSortScreen.png" alt="" class="screen" id = "animalSortScreen">
-    </div>
-    <script src="playScript.js"></script>
-  </body>
+  <div>
+    <img src="audioFiles/fruitFrenzy/background.png" alt="" class="screen" id="fruitFrenzyScreen">
+  </div>
+  <div>
+    <img src="audioFiles/spellSafari/spellSafariScreen.png" alt="" class="screen" id="spellSafariScreen">
+  </div>
+  <div>
+    <img src="gameImages/gameScreen/blastOffScreen.png" alt="" class="screen" id="blastOffScreen">
+  </div>
+  <div>
+    <img src="audioFiles/storyBuilder/storyBuilderScreen.png" alt="" class="screen" id="storyBuilderScreen">
+  </div>
+  <div>
+    <img src="audioFiles/shapeParade/shapeParadeScreen.png" alt="" class="screen" id="shapeParadeScreen">
+  </div>
+  <div>
+    <img src="audioFiles/carCount/carCountScreen.png" alt="" class="screen" id="carCountScreen">
+  </div>
+  <div>
+    <img src="audioFiles/animalSort/animalSortScreen.png" alt="" class="screen" id="animalSortScreen">
+  </div>
+
+  <footer>
+    <img src="gameImages/buttons/logoNav.png" alt="Audemy Logo" width="300vh">
+    <p>Blind and Visually Impaired Education</p>
+  </footer>
+
+  <script src="playScript.js"></script>
+</body>
 
 </html>
