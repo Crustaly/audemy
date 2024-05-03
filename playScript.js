@@ -813,8 +813,8 @@ recognition.onspeechend = function() {
 
 
 function generateAdditionProblems() {
-  num1 = Math.floor(Math.random() * 10) + 2;
-  num2 = Math.floor(Math.random() * 10) + 2;
+  num1 = Math.floor(Math.random() * 9) + 2;
+  num2 = Math.floor(Math.random() * 9) + 2;
 
 
   console.log(`What is  ` + num1 + ` +  ` + num2);
