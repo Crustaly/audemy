@@ -3413,6 +3413,19 @@ body.index #main {
 		width: auto;
 
 	}
+	.button.fit.bigboy  {
+		width: auto;
+		font-size: 100px;
+	}
+	.bigboy {
+			font-size: 24px; /* Adjust the font size to make the button bigger */
+			padding: 15px 30px; /* Adjust padding for a larger clickable area */
+			background-color: white; /* Fill the button with white */
+			color: black; /* Change text color to black for better visibility */
+			width: 100%; /* Ensure the button fills the entire width */
+			display: block; /* Make the button a block element */
+			text-align: center; /* Center the text within the button */
+	}
 
 	/* Icons */
 
