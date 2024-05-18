@@ -2713,7 +2713,7 @@ button.medium,
 #banner {
 	background-attachment: scroll, scroll, scroll, fixed;
 	background-color: #fe902a;
-	background-image: url("images/light-bl.svg"), url("images/light-br.svg"), url("images/overlay.png"), url("../../images/bannerOrange.png");
+	background-image: url("images/light-bl.svg"), url("images/light-br.svg"), url("images/overlay.png"), url("../../images/bannerTestBoy.png");
 	background-position: bottom left, bottom right, top left, top center;
 	background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 	background-size: 25em, 25em, auto, cover;
@@ -2732,7 +2732,7 @@ button.medium,
 	-webkit-animation-fill-mode: forwards;
 	-ms-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
-	background: rgb(255, 149, 0);
+	background: rgb(255, 149, 0,.5);
 	color: #fff;
 	display: inline-block;
 
