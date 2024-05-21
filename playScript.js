@@ -165,7 +165,7 @@ function inGame(gameId) {
     removeMenuButtons();
   }
 
-    insideGame = false;
+  insideGame = false;
 }
 function disappear(buttonId) {
   var button = document.getElementById(buttonId);
@@ -659,7 +659,7 @@ async function animalSortQuestion() {
   await waitForSeconds(1);
   await playAudio("audioFiles/animalSort/seaorland.mp3", 2.8);
   await playAudio("audioFiles/animalSort/sayoceanorland.mp3", 7);
-   await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
   clickable = true;
   await waitForRecognitionResult();
   console.log(input);
@@ -746,19 +746,19 @@ async function carCountQuestion() {
 function handleClickOrSpace(event) {
   // Check if the event is a click event
   console.log(event.key);
-  if (event.type === 'click'||(event.type === 'keydown' && event.key == 'Shift')) {
+  if (event.type === 'click' || (event.type === 'keydown' && event.key == 'Shift')) {
     console.log('You pressed the space bar!');
-    if(clickable){
-       recognition.start();
+    if (clickable) {
+      recognition.start();
     }
-      
-    else if(!insideGame){
+
+    else if (!insideGame) {
       console.log('Active element bri:', document.activeElement);
 
 
-       inGame(event.target.id);
+      inGame(event.target.id);
     }
-  
+
 
   }
 
@@ -804,7 +804,7 @@ function stopAudio(audio) {
 
 
 recognition.onerror = function() {
-  speak("Sorry, I didn't catch that. Please click the space bar or tap the screen and try again.");
+  speak("Sorry, I didn't catch that. Please click the shift key or tap the screen and try again.");
   clickable = true;
 }
 recognition.onspeechend = function() {
@@ -844,8 +844,8 @@ function waitForSeconds(seconds) {
 function speak(s) {
   //some browsers are special so... ijust did this hopefully this works!
   utterance = new SpeechSynthesisUtterance(s);
- // voices = speechSynthesis.getVoices()
- // utterance.voice = voices[2];
+  // voices = speechSynthesis.getVoices()
+  // utterance.voice = voices[2];
   speechSynthesis.speak(utterance);
 
 
@@ -927,7 +927,7 @@ const seaAnimals = [
 function toNum(num) {
   console.log(num);
   //be careful! includes goes to 1  if input is 10
-   if (num.includes('ten') || num.includes('10')) {
+  if (num.includes('ten') || num.includes('10')) {
     return 10;
   } else if (num.includes('eleven') || num.includes('11')) {
     return 11;
