@@ -25,12 +25,9 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 
-
-
 var diagnostic = document.querySelector('.output');
 var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
-
 
 var roundCount = 1;
 var clickable = false;
@@ -38,10 +35,8 @@ var insideGame = false;
 var input = "";
 var correct = false;
 
-
 var menu = false;
 var selectedShape = "";
-
 
 var num1;
 var num2;
@@ -49,43 +44,11 @@ var word = "";
 var count = 0;
 var right = 0;
 var answers = [];
-
-
 var carTotal = 0;
 
-
-/*
-document.addEventListener("DOMContentLoaded", function() {
-  const buttons = document.querySelectorAll('.game-button');
-
-
-  buttons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-      const audioId = button.dataset.audio;
-      const audio = document.getElementById(audioId);
-      audio.play();
-    });
-
-
-    button.addEventListener('mouseleave', function() {
-      const audioId = button.dataset.audio;
-      const audio = document.getElementById(audioId);
-      audio.pause();
-      audio.currentTime = 0; // Reset audio to the beginning
-    });
-  });
-});
-*/
 gameMenu();
 speak("");
-/*
-function mainMenu() {
-  removeMenuButtons();
-  removeImages();
-//  appear('start');
- // appear('mainInformation');
-}
-*/
+
 function removeImages() {
   disappear('fruitFrenzyScreen');
   disappear('spellSafariScreen');
@@ -94,7 +57,8 @@ function removeImages() {
   disappear('carCountScreen');
   disappear('shapeParadeScreen');
   disappear('storyBuilderScreen');
-
+  //disappear('monkeyMadnessScreen');
+//  disappear('dogDetectorScreen');
 
 }
 function removeMenuButtons() {
@@ -106,6 +70,25 @@ function removeMenuButtons() {
   disappear('storyBuilder');
   disappear('spellTitle');
   disappear('mathTitle');
+  disappear('dogDetector');
+  disappear('monkeyMadness');
+  disappear('penguinParty');
+  disappear('crimeBusters');
+  disappear('skeletonSlumber');
+  disappear('makeABand')
+  disappear('fridgeRefill')
+  disappear('addTitle');
+  disappear('wordTitle');
+  disappear('countTitle');
+  disappear('dogDetector1');
+ disappear('fruitFrenzy1');
+  disappear('carCounting1');
+  disappear('spellingSafari1');
+  disappear('countingGames')
+  disappear('languageSection')
+  disappear('mathSection')
+  disappear('addGames')
+  disappear('wordGames')
   // disappear('start');
   // disappear('mainInformation');  
   menu = false;
@@ -113,14 +96,29 @@ function removeMenuButtons() {
 
 
 function gameMenu() {
+  console.log('bruh')
   appear('fruitFrenzy');
   appear('carCounting');
   appear('shapeParade');
   appear('spellingSafari');
   appear('animalSorting');
   appear('storyBuilder');
-  appear('spellTitle');
-  appear('mathTitle');
+  appear('dogDetector');
+  appear('monkeyMadness');
+  appear('penguinParty');
+  appear('crimeBusters');
+  appear('skeletonSlumber');
+  appear('makeABand')
+  appear('fridgeRefill')
+  appear('addTitle');
+  appear('wordTitle');
+  appear('countTitle');
+
+  appear('dogDetector1');
+  appear('fruitFrenzy1');
+  appear('carCounting1');
+  appear('spellingSafari1');
+  
   // disappear('start');
   // disappear('mainInformation');
   appear('spellTitle');
@@ -135,39 +133,68 @@ function gameMenu() {
 function inGame(gameId) {
   insideGame = true;
   //remove menu buttons is in each function because there are cases where something is passed here that is not a game.
-  if (gameId == "blastOff") {
+  if (gameId == "blastOff"||gameId == "blastOff1") {
     runBlastOff();
     removeMenuButtons();
   }
-  if (gameId == 'fruitFrenzy') {
+  if (gameId == 'fruitFrenzy'||gameId == 'fruitFrenzy1') {
     runFruitFrenzy();
     removeMenuButtons();
   }
-  if (gameId == 'spellingSafari') {
+  if (gameId == 'spellingSafari'||gameId == 'spellingSafari1') {
     console.log('spell safaru');
     runSpellSafari();
     removeMenuButtons();
   }
-  if (gameId == 'shapeParade') {
+  if (gameId == 'shapeParade'||gameId == 'shapeParade1') {
     runShapeParade();
     removeMenuButtons();
   }
-  if (gameId == 'storyBuilder') {
+  if (gameId == 'storyBuilder'||gameId == 'storyBuilder1') {
     runStoryBuilder();
     removeMenuButtons();
   }
-  if (gameId == 'carCounting') {
+  if (gameId == 'carCounting'||gameId == 'carCounting1') {
     runCarCount();
     removeMenuButtons();
   }
-  if (gameId == 'animalSort') {
+  if (gameId == 'animalSort'||gameId == 'animalSort1') {
     runAnimalSort();
+    removeMenuButtons();
+  }
+  if (gameId == 'dogDetector'||gameId == 'dogDetector1') {
+    runDogDetector();
+    removeMenuButtons();
+  }
+  if (gameId == 'pengiunParty'||gameId == 'pengiunParty1') {
+    runDogDetector();
+    removeMenuButtons();
+  }
+  if (gameId == 'monkeyMadness'||gameId == 'monkeyMadness1') {
+    runMonkeyMadness();
+    removeMenuButtons();
+  }
+  if (gameId == 'skeletonSlumber'||gameId == 'skeletonSlumber1') {
+    runSkeletonSlumber();
+    removeMenuButtons();
+  }
+  if (gameId == 'crimeBusters'||gameId == 'crimeBusters1') {
+    runCrimeBusters();
+    removeMenuButtons();
+  }
+  if (gameId == 'makeABand'||gameId == 'makeABand1') {
+    runMakeABand();
+    removeMenuButtons();
+  }
+  if (gameId == 'fridgeRefill'||gameId == 'fridgeRefill1') {
+    runFridgeRefill();
     removeMenuButtons();
   }
 
   insideGame = false;
 }
 function disappear(buttonId) {
+  console.log(buttonId);
   var button = document.getElementById(buttonId);
   button.style.display = "none";
 }
@@ -178,7 +205,6 @@ function appear(buttonId) {
   var button = document.getElementById(buttonId);
   button.style.display = "block"; // or "inline" or any valid display value
 }
-
 
 async function runFruitFrenzy() {
 
@@ -197,6 +223,114 @@ async function runFruitFrenzy() {
     await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
     speak(count);
     await fruitMathQuestion();
+    if (correct) {
+      await playAudio("audioFiles/generalGame/ding.mp3", .5);
+
+
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
+      right++;
+    }
+    else {
+      await playAudio("audioFiles/generalGame/drum.mp3", .5);
+
+
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
+
+      speak((num1 + num2));
+      await waitForSeconds(.5);
+    }
+  }
+  if (right > 3) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
+  }
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
+  }
+  await waitForSeconds(2);
+  clickable = false;
+  gameMenu();
+}
+async function runCrimeBusters() {
+
+
+  console.log("here");
+  appear("");
+  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 18);
+  roundCount = 5;
+  clickable = false;
+  var right = 0;
+  count = 0;
+  while (count < roundCount) {
+    count++;
+    clickable = false;
+    correct = false;
+    await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
+    speak(count);
+    await crimeMathQuestion();
+    if (correct) {
+      await playAudio("audioFiles/generalGame/ding.mp3", .5);
+
+
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
+      right++;
+    }
+    else {
+      await playAudio("audioFiles/generalGame/drum.mp3", .5);
+
+
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
+
+      speak((num1 + num2));
+      await waitForSeconds(.5);
+    }
+  }
+  if (right > 3) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
+  }
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
+  }
+  await waitForSeconds(2);
+  clickable = false;
+  gameMenu();
+}
+async function runSkeletonSlumber() {
+
+
+  console.log("here");
+  
+  await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 18);
+  roundCount = 5;
+  clickable = false;
+  var right = 0;
+  count = 0;
+  while (count < roundCount) {
+    count++;
+    clickable = false;
+    correct = false;
+    await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
+    speak(count);
+    await skeletonMathQuestion();
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
@@ -296,8 +430,6 @@ async function runStoryBuilder() {
 }
 async function runAnimalSort() {
   count = 0;
-
-
   console.log("here");
   appear("animalSortScreen");
   await playAudio("audioFiles/animalSort/animalSortIntro.mp3", 24);
@@ -313,18 +445,12 @@ async function runAnimalSort() {
     await animalSortQuestion();
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
-
-
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
     else {
       await playAudio("audioFiles/generalGame/drum.mp3", .5);
-
-
       await playAudio("audioFiles/generalGame/wrong.mp3", 1);
-
-
     }
   }
   if (right >= 2) {
@@ -347,12 +473,8 @@ async function runAnimalSort() {
 }
 
 
-
-
 async function runShapeParade() {
   count = 0;
-
-
   console.log("here");
   appear("shapeParadeScreen");
   await playAudio("audioFiles/shapeParade/shapeParadeIntro.mp3", 25);
@@ -519,7 +641,109 @@ async function runCarCount() {
   clickable = false;
   gameMenu();
 }
+async function runDogDetector() {
+  count = 0;
+ // appear("carCountScreen");
+  await playAudio("audioFiles/dogDetector/dogDetectorIntro.mp3", 8);
+  roundCount = 3;
+  clickable = false;
+  var right = 0;
+  while (count < roundCount) {
+    count++;
+    clickable = false;
+    correct = false;
+    await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
+    speak(count);
+    await dogDetectorQuestion();
+    if (correct) {
+      await playAudio("audioFiles/generalGame/ding.mp3", .5);
 
+
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
+      right++;
+    }
+    else {
+      await playAudio("audioFiles/generalGame/drum.mp3", .5);
+
+
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
+
+      speak(carTotal);
+      await waitForSeconds(.5);
+    }
+  }
+  if (right >= 2) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
+  }
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
+  }
+  await waitForSeconds(2);
+  clickable = false;
+  gameMenu();
+}
+
+async function runMonkeyMadness() {
+  count = 0;
+ // appear("carCountScreen");
+  await playAudio("audioFiles/monkeyMadness/monkeyMadnessIntro.mp3", 19);
+  roundCount = 3;
+  clickable = false;
+  var right = 0;
+  while (count < roundCount) {
+    count++;
+    clickable = false;
+    correct = false;
+    await playAudio("audioFiles/generalGame/qNum.mp3", 1.7);
+    speak(count);
+    await monkeyMadnessQuestion();
+    if (correct) {
+      await playAudio("audioFiles/generalGame/ding.mp3", .5);
+
+
+      await playAudio("audioFiles/generalGame/correct.mp3", 1);
+      right++;
+    }
+    else {
+      await playAudio("audioFiles/generalGame/drum.mp3", .5);
+
+
+      await playAudio("audioFiles/generalGame/wrong.mp3", 1);
+      await playAudio("audioFiles/generalGame/correctWas.mp3", 2);
+
+
+      speak(carTotal);
+      await waitForSeconds(.5);
+    }
+  }
+  if (right >= 2) {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/greatJob.mp3", 1);
+  }
+  else {
+    await playAudio("audioFiles/generalGame/youGot.mp3", 1);
+    speak(right);
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/questionsCorrect.mp3", 1);
+    await playAudio("audioFiles/generalGame/keepPracticing.mp3", 2);
+  }
+  await waitForSeconds(2);
+  clickable = false;
+  gameMenu();
+}
 
 
 
@@ -715,14 +939,83 @@ async function fruitMathQuestion() {
 }
 
 
+async function skeletonMathQuestion() {
+  const fruitNames =
+    ["audioFiles/fruitFrenzy/oranges.mp3", "audioFiles/fruitFrenzy/bananas.mp3", "audioFiles/fruitFrenzy/apples.mp3"];
+
+
+  generateAdditionProblems();
+  await waitForSeconds(1);
+  await playAudio("audioFiles/fruitFrenzy/thereAre.mp3", 1.2)
+  await waitForSeconds(.4);
+  speak(num1);
+  await waitForSeconds(.7);
+  var randomIndex = Math.floor(Math.random() * 3);
+
+
+  await playAudio(fruitNames[randomIndex], .5);
+  await waitForSeconds(.5);
+  speak("and" + num2);
+  await waitForSeconds(.6);
+
+
+  randomIndex = Math.floor(Math.random() * 3);
+  await playAudio(fruitNames[randomIndex], 1);
+  clickable = true;
+  await playAudio("audioFiles/fruitFrenzy/fruitTotal.mp3", 1.5)
+  if (count == 1) {
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
+  }
+  await waitForRecognitionResult();
+  console.log(toNum(input));
+  console.log(num1 + num2)
+  if (num1 + num2 == toNum(input)) {
+    correct = true;
+  }
+}
+async function crimeMathQuestion() {
+  const fruitNames =
+    ["audioFiles/fruitFrenzy/oranges.mp3", "audioFiles/fruitFrenzy/bananas.mp3", "audioFiles/fruitFrenzy/apples.mp3"];
+
+
+  generateAdditionProblems();
+  await waitForSeconds(1);
+  await playAudio("audioFiles/fruitFrenzy/thereAre.mp3", 1.2)
+  await waitForSeconds(.4);
+  speak(num1);
+  await waitForSeconds(.7);
+  var randomIndex = Math.floor(Math.random() * 3);
+
+
+  await playAudio(fruitNames[randomIndex], .5);
+  await waitForSeconds(.5);
+  speak("and" + num2);
+  await waitForSeconds(.6);
+
+
+  randomIndex = Math.floor(Math.random() * 3);
+  await playAudio(fruitNames[randomIndex], 1);
+  clickable = true;
+  await playAudio("audioFiles/fruitFrenzy/fruitTotal.mp3", 1.5)
+  if (count == 1) {
+    await waitForSeconds(.5);
+    await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
+  }
+  await waitForRecognitionResult();
+  console.log(toNum(input));
+  console.log(num1 + num2)
+  if (num1 + num2 == toNum(input)) {
+    correct = true;
+  }
+}
+
+
 
 
 
 
 async function carCountQuestion() {
-
-
-
 
   carTotal = Math.floor(Math.random() * 5) + 1;
   await waitForSeconds(1);
@@ -743,6 +1036,36 @@ async function carCountQuestion() {
   }
 }
 
+async function monkeyMadnessQuestion() {
+  carTotal = Math.floor(Math.random() * 3) + 1;
+  await waitForSeconds(1);
+  await playAudio("audioFiles/monkeyMadness/startCountMoneky.mp3", 4);
+  for (let i = 0; i < carTotal; i++) {
+    await playAudio("audioFiles/monkeyMadness/monkeySwings.mp3", 2);
+  }
+  await waitForSeconds(.1);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
+  clickable = true;
+  await waitForRecognitionResult();
+  if (carTotal == toNum(input)) {
+    correct = true;
+  }
+}
+async function dogDetectorQuestion() {
+  carTotal = Math.floor(Math.random() * 3) + 1;
+  await waitForSeconds(1);
+  await playAudio("audioFiles/dogDetector/countStart.mp3", 2);
+  for (let i = 0; i < carTotal; i++) {
+    await playAudio("audioFiles/dogDetector/dogBark.mp3", 1);
+  }
+  await waitForSeconds(.1);
+  await playAudio("audioFiles/generalGame/clickandsay.mp3", 4);
+  clickable = true;
+  await waitForRecognitionResult();
+  if (carTotal == toNum(input)) {
+    correct = true;
+  }
+}
 function handleClickOrSpace(event) {
   // Check if the event is a click event
   console.log(event.key);
@@ -846,6 +1169,9 @@ function speak(s) {
   utterance = new SpeechSynthesisUtterance(s);
   // voices = speechSynthesis.getVoices()
   // utterance.voice = voices[2];
+  if(s==1){
+    
+  }
   speechSynthesis.speak(utterance);
 
 

@@ -69,33 +69,47 @@
 						const map = tt.map({
 							key: "1JNM9zmAHGoFlR8FiiV1syDoa05dafLP",
 							container: "map",
-							zoom: 3,
+							zoom: 1,
 							center: center
 
 						})
 						map.on('load', () => {
 
+							let calipopup = new tt.Popup({
+								closeButton: false
+							}).setText("California School for the Blind")
+							let calimarker = new tt.Marker().setLngLat([-119.4179, 36.7783]).setPopup(calipopup)
+							calimarker.addTo(map)
 							let texaspopup = new tt.Popup({
 								closeButton: false
 							}).setText("Texas School for the Blind and Visually Impaired")
 							let texasmarker = new tt.Marker().setLngLat([-97.7431, 30.2672]).setPopup(texaspopup)
 							texasmarker.addTo(map)
+							
 							let kansaspopup = new tt.Popup({
 								closeButton: false
 							}).setText("Kansas School for the Blind")
 							let kansasmarker = new tt.Marker().setLngLat([-98, 38.5]).setPopup(kansaspopup)
 							kansasmarker.addTo(map)
+							
 							let illinoispopup = new tt.Popup({
 								closeButton: false
 							}).setText("Illinois School for the Visually Impaired")
 							let illinoismarker = new tt.Marker().setLngLat([-89, 40]).setPopup(illinoispopup)
 							illinoismarker.addTo(map)
+							
 							let arizonapopup = new tt.Popup({
 								closeButton: false
 							}).setText("Arizona State School for the Deaf and the Blind")
 							let arizonamarker = new tt.Marker().setLngLat([-111.0937, 34.0489]).setPopup(arizonapopup)
 							arizonamarker.addTo(map)
-
+							
+							let hezepopup = new tt.Popup({
+								closeButton: false
+							}).setText("HeZe Special Education Center (菏泽市特殊教育中心)")
+							let hezemarker = new tt.Marker().setLngLat([117.0208, 36.6683]).setPopup(hezepopup)
+							hezemarker.addTo(map)
+							
 							let tompkinspopup = new tt.Popup({
 								closeButton: false
 							}).setText("Obra D. Tompkins High School")
@@ -150,11 +164,38 @@
 					</div>
 				</div>
 			</section>
-			<!-- One -->
+			<section class="wrapper style4 container">
 
+				<!-- Content -->
+				<div class="content">
+					<section>
 
-			<!-- Two -->
+						<header>
+							<h3>Affiliated Schools and Teachers</h3>
+						</header>
+						<h1>Schools</h1>
+								<ul>
+										<li><a href="https://www.csb-cde.ca.gov/">California School for the Blind</a></li>
+										<li><a href="https://www.tsbvi.edu/">Texas School for the Blind and Visually Impaired</a></li>
+										<li><a href="https://kssb.net/">Kansas School for the Blind</a></li>
+										<li><a href="https://www.dhs.state.il.us/page.aspx?item=84503">Illinois School for the Visually Impaired</a></li>
+										<li><a href="https://asdb.az.gov/">Arizona State School for the Deaf and the Blind</a></li>
+										<li><a href="https://www.katyisd.org/tompkins">Obra D. Tompkins High School</a></li>
+										<li><a href="http://www.hzstjzx.cn/">HeZe Special Education Center (菏泽市特殊教育中心)</a></li>
+								</ul>
+						<h1>Teachers</h1>
+					
+						<ul>
+								<li><a href="mailto:laura.prelsnik@asdb.az.gov">Laura Prelsnik</a></li>
+								<li><a href="mailto:castilloj@tsbvi.edu">John Castillo</a></li>
+								<li><a href="mailto:vherndon@csb-cde.ca.gov">Vanessa Herndon</a></li>
+								<li><a href="mailto:krhea@kssdb.org">Kimberly Rhea</a></li>
+						</ul>
 
+					</section>
+				</div>
+
+			</section>
 			</section>
 
 		</article>

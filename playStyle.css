@@ -127,6 +127,13 @@ h2 {
   color: #000f1f; /* Darker text color */
   background-color:#50d246;
 }
+#countTitle {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center; /* Centered text */
+  color: #000f1f; /* Darker text color */
+  background-color:#ad5fec;
+}
 #spellTitle {
   font-size: 50px;
   margin-bottom: 10px;
@@ -141,9 +148,32 @@ footer{
   text-align: center;
 
 }
+#addTitle {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center; /* Centered text */
+  color: #000f1f; /* Darker text color */
+  background-color:#ec5f8a;
+}
+#wordTitle {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center; /* Centered text */
+  color: #000f1f; /* Darker text color */
+  background-color:#ece15f;
+}
 #mathSection {
   background-color: #a2ec9c; /* Blue background */
 }
 #languageSection {
   background-color: #8ad0ff; /* Blue background */
+}
+#countingGames {
+  background-color: #df9cec; /* Blue background */
+}
+#addGames {
+  background-color: #ec9ca4; /* Blue background */
+}
+#wordGames {
+  background-color: #ecea9c; /* Blue background */
 }
