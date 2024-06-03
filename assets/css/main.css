@@ -1,5 +1,8 @@
-@import url("fontawesome-all.min.css");
+/*@import url("fontawesome-all.min.css");
+*/
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,900");
+@import url("fontawesome-all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&display=swap");
 
 /*
 	Twenty by HTML5 UP
@@ -280,8 +283,8 @@ body,
 input,
 select,
 textarea {
-	color: #901313;
-	font-family: 'Lato', sans-serif;
+	color: #000000;
+	font-family: 'Lato', sans-serif !important;
 	font-size: 15pt;
 	font-weight: 300;
 	letter-spacing: 0.025em;
@@ -298,6 +301,7 @@ a {
 	-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 	transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 	color: #ef7e61;
+	font-family: 'Inter', sans-serif ;
 	text-decoration: none;
 	border-bottom: dotted 1px;
 }
@@ -331,6 +335,7 @@ h6 {
 	line-height: 1.75em;
 	margin-bottom: 1em;
 	text-transform: uppercase;
+	font-family: 'Inter', sans-serif;
 }
 
 h1 a,
@@ -1932,7 +1937,7 @@ header.major {
 
 header.special {
 	margin-bottom: 5em;
-	padding-top: 7em;
+	padding-top: 4em;
 	position: relative;
 	text-align: center;
 }
@@ -1986,7 +1991,7 @@ footer> :last-child {
 }
 
 footer.major {
-	padding-top: 3em;
+	padding-top: 2em;
 }
 
 /* Form */
@@ -2486,6 +2491,7 @@ button.medium,
 	background: #fff;
 	border-color: #fff;
 	color: #ff8375 !important;
+	
 }
 
 .wrapper.style2 input[type="button"].primary:hover,
@@ -2503,7 +2509,7 @@ button.medium,
 }
 
 .wrapper.style4 {
-	background: #fd855d;
+	background: #fecd95;
 	color: inherit;
 	padding: 4em;
 }
