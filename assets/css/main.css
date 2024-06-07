@@ -1,8 +1,9 @@
-/*@import url("fontawesome-all.min.css");
-*/
+@import url("fontawesome-all.min.css");
+
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,900");
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Schoolbell&family=Inter:wght@300;400;900&display=swap");
 
 /*
 	Twenty by HTML5 UP
@@ -99,8 +100,9 @@ video {
 	vertical-align: baseline;
 }
 .button-19 {
+	margin-top: 20px; 
 	appearance: button;
-	background-color: #f9704e;
+	background-color: #4ec5f9;
 	border: solid transparent;
 	border-radius: 16px;
 	border-width: 0 0 4px;
@@ -113,7 +115,7 @@ video {
 	font-weight: 700;
 	letter-spacing: .8px;
 	line-height: 20px;
-	margin: 0;
+
 	outline: none;
 	overflow: visible;
 	padding: 13px 16px;
@@ -126,13 +128,13 @@ video {
 	-webkit-user-select: none;
 	vertical-align: middle;
 	white-space: nowrap;
-	width: 100%;
+	width: 33%;
 	position: relative; /* added for pseudo-element positioning */
 }
 
 .button-19:after {
 	background-clip: padding-box;
-	background-color: #f52424;
+	background-color: #1ad9ff;
 	border: solid transparent;
 	border-radius: 16px;
 	border-width: 0 0 4px;
@@ -162,6 +164,16 @@ video {
 .button-19:active {
 	border-width: 4px 0 0;
 	background: none;
+}
+
+/* Flexbox centering */
+@media (max-width: 768px) {
+	.button-19 {
+		width: 100%;
+		margin: 20px auto; /* Centering the button */
+		display: flex;
+		justify-content: center;
+	}
 }
 
 
@@ -284,7 +296,7 @@ input,
 select,
 textarea {
 	color: #000000;
-	font-family: 'Lato', sans-serif !important;
+		font-family: 'Schoolbell', cursive;
 	font-size: 15pt;
 	font-weight: 300;
 	letter-spacing: 0.025em;
@@ -292,7 +304,7 @@ textarea {
 }
 
 body .icon {
-	color: rgb(255, 17, 0, 0.931);
+	color: rgb(255, 187, 0, 0.931);
 }
 
 a {
@@ -301,7 +313,7 @@ a {
 	-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 	transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 	color: #ef7e61;
-	font-family: 'Inter', sans-serif ;
+	font-family: 'Schoolbell', cursive; 
 	text-decoration: none;
 	border-bottom: dotted 1px;
 }
@@ -333,9 +345,9 @@ h6 {
 	color: inherit;
 	font-weight: 300;
 	line-height: 1.75em;
-	margin-bottom: 1em;
+
 	text-transform: uppercase;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Schoolbell', cursive; 
 }
 
 h1 a,
@@ -695,7 +707,7 @@ blockquote {
 }
 
 .row.gtr-200.gtr-uniform>* {
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
 @media screen and (max-width: 1680px) {
@@ -2060,10 +2072,11 @@ input[type="email"] {
 	border: 0;
 	position: relative;
 }
-
+/*image border is here*/
 .image:before {
-	border: 3px solid #e13333;
+	border: 3px solid #fb7e7e;
 	/* Add border */
+	border-radius: 10px;
 	box-sizing: border-box;
 	content: '';
 	height: 100%;
@@ -2390,9 +2403,10 @@ input[type="submit"].primary,
 input[type="reset"].primary,
 button.primary,
 .button.primary {
-	background: #e13333;
-	border-color: #e13333;
+	background: rgb(255, 187, 0, 0.931);
+	border-color: rgb(250, 183, 0, 0.931);
 	color: #fff !important;
+	border-radius:10px;
 	
 }
 
@@ -2401,8 +2415,9 @@ input[type="submit"].primary:hover,
 input[type="reset"].primary:hover,
 button.primary:hover,
 .button.primary:hover {
-	background: #e13333 !important;
-	/*border-color: #266DD3d1 !important;*/
+	border-radius:10px;
+	background:rgb(255, 187, 0, 0.931) !important;
+	border-color: #266DD3d1 !important;
 }
 
 input[type="button"].fit,
@@ -2458,8 +2473,8 @@ button.medium,
 /* Wrapper */
 
 .wrapper {
-	margin-bottom: 5em;
-	padding: 5em;
+	margin-bottom: 2em;
+	padding: .5em;
 }
 
 .wrapper.style1 {
@@ -2468,7 +2483,7 @@ button.medium,
 
 .wrapper.style2 {
 	background-color: #f77e69;
-	background-image: url("images/light-bl.svg"), url("images/light-br.svg");
+	
 	background-position: bottom left, bottom right;
 	background-repeat: no-repeat, no-repeat;
 	background-size: 25em, 25em;
@@ -2507,12 +2522,14 @@ button.medium,
 	background: #fff;
 	color: inherit;
 }
-
+/*HERE Maybe*/
 .wrapper.style4 {
 	background: #fecd95;
 	color: inherit;
-	padding: 4em;
+	padding: 2em;
+	border-radius: 20px;  /* Adjust the value for desired curve */
 }
+
 
 /* Header */
 
@@ -2783,46 +2800,39 @@ button.medium,
 }
 
 #banner {
-	background-attachment: scroll, scroll, scroll, fixed;
-	background-color: #fe902a;
-	background-image: url("images/light-bl.svg"), url("images/light-br.svg"), url("images/overlay.png"), url("../../images/bannerTestBoy.png");
-	background-position: bottom left, bottom right, top left, top center;
-	background-repeat: no-repeat, no-repeat, repeat, no-repeat;
-	background-size: 25em, 25em, auto, cover;
+	background-color: #febb7c;
 	color: #fff;
 	cursor: default;
-	padding: 6em 0;
+	padding: 1em 0;
 	text-align: center;
 }
 
 #banner .inner {
-	-moz-animation: reveal-banner 1s 0.25s ease-in-out;
-	-webkit-animation: reveal-banner 1s 0.25s ease-in-out;
-	-ms-animation: reveal-banner 1s 0.25s ease-in-out;
-	animation: reveal-banner 1s 0.25s ease-in-out;
-	-moz-animation-fill-mode: forwards;
-	-webkit-animation-fill-mode: forwards;
-	-ms-animation-fill-mode: forwards;
-	animation-fill-mode: forwards;
-	background: rgb(255, 149, 0,.5);
 	color: #fff;
-	display: inline-block;
-
-	padding: 3em;
-	text-align: center;
+	display: flex; /* Use flexbox to align items */
+	gap: 1px;
+	justify-content: space-between; /* Arrange items with space between */
+	align-items: center; /* Center items vertically */
+	padding-top: 3em;
 }
 
-#banner .inner header {
-	display: inline-block;
-	border-bottom: solid 2px;
-	border-top: solid 2px;
-	margin: 0 0 2em 0;
-	padding: 3px 0 3px 0;
+#banner .inner .content {
+	flex: 1; /* Grow to fill available space */
+}
+
+#banner .inner .left-content {
+	text-align: right; /* Align content to the right */
+}
+
+#banner .inner .right-content {
+	text-align: left; /* Align content to the left */
+}
+
+#banner .inner .image-button {
+	margin: 0 auto; /* Center the button horizontally */
 }
 
 #banner .inner header h2 {
-	border-bottom: solid 2px;
-	border-top: solid 2px;
 	font-size: 2.5em;
 	font-weight: 900;
 	letter-spacing: 0.2em;
@@ -2837,21 +2847,10 @@ button.medium,
 	margin: 0;
 	text-transform: uppercase;
 }
-
-#banner .inner p a {
-	color: inherit;
-	font-weight: 400;
-	text-decoration: none;
-}
-
-#banner .inner footer {
-	margin: 2em 0 0 0;
-}
-
 /* Main */
 
 #main {
-	background-image: url("images/dark-tl.svg"), url("images/dark-tr.svg"), url("images/dark-bl.svg"), url("images/dark-br.svg");
+
 	background-position: top left, top right, bottom left, bottom right;
 	background-repeat: no-repeat;
 	background-size: 25em;
@@ -2883,7 +2882,7 @@ body.index #main {
 #cta {
 	background-attachment: scroll, scroll, scroll, fixed;
 	background-color: #fe8616;
-	background-image: url("images/light-tl.svg"), url("images/light-tr.svg"), url("images/overlay.png"), url("../../images/banner.jpg");
+
 	background-position: top left, top right, top left, bottom center;
 	background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 	background-size: 25em, 25em, auto, cover;
@@ -2903,6 +2902,7 @@ body.index #main {
 	color: #e0e4e5;
 	padding: 5em 5em 10em 5em;
 	text-align: center;
+	margin-top: 6em; 
 }
 
 #footer .copyright {
@@ -3219,7 +3219,7 @@ body.index #main {
 	}
 
 	#main .sidebar {
-		border-top: solid 1px rgb(138, 50, 40, 0.1);
+		border-top: solid 1px rgb(255, 174, 0, 0.1);
 		padding-top: 3em;
 	}
 
@@ -3316,7 +3316,7 @@ body.index #main {
 	}
 
 	#navButton .toggle:after {
-		background: rgb(228, 47, 47, 0.75);
+		background: rgb(255, 187, 0, 0.931);
 		border-radius: 2px;
 		content: '';
 		height: 40px;
@@ -3357,7 +3357,7 @@ body.index #main {
 
 	#navPanel .link {
 		border: 0;
-		border-top: solid 1px rgb(177, 51, 37, 0.05);
+		border-top: solid 1px rgb(255, 187, 0, 0.931);
 		color: inherit;
 		display: block;
 		height: 3em;
@@ -3510,7 +3510,7 @@ body.index #main {
 		font-size: 100px;
 	}
 	.bigboy {
-			font-size: 24px; /* Adjust the font size to make the button bigger */
+			font-size: 24px; 
 			padding: 15px 30px; /* Adjust padding for a larger clickable area */
 			background-color: white; /* Fill the button with white */
 			color: black; /* Change text color to black for better visibility */
@@ -3655,6 +3655,159 @@ ul li a {
 }
 
 ul li a:hover {
-	color: #c11515; /* Keep black color on hover */
+	color: #ffbb00; /* Keep black color on hover */
 	text-decoration: underline; /* Underline on hover */
+}	
+
+.image-button {
+		display: inline-block; 
+		width: 150px; /* Adjust the width as desired */
+		height: 50px; /* Adjust the height as desired */
+		background-image: url('../../character/playButton.png');
+		background-size: contain;
+		background-position: left center; /* Align the background image to the left */
+		background-repeat: no-repeat;
+		border: none;
+		color: white;
+		font-size: 16px; /* Adjust the font size as desired */
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		box-sizing: border-box;
+		padding: 10px; /* Adjust padding as needed */
+		line-height: normal;
+		margin: 0; /* Remove margins */
+}
+
+
+.image-button:hover {
+	opacity: 0.8;
+}
+
+.image-button:active {
+	opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+	.image-button {
+			width: 95%; /* Adjust width for small devices */
+			font-size: 8vh; /* Adjust font size for small devices */
+			height: 25vh; /* Adjust height for small devices */
+			padding: 40px; /* Adjust padding for small devices */
+	}
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+	.image-button {
+			width: 90%; /* Adjust width for medium devices */
+			font-size: 6vh; /* Adjust font size for medium devices */
+			height: 27vh; /* Adjust height for medium devices */
+			padding: 35px; /* Adjust padding for medium devices */
+	}
+}
+
+@media (min-width: 1201px) {
+	.image-button {
+			width: 80%; /* Adjust width for large devices */
+			font-size: 5vh; /* Adjust font size for large devices */
+			height: 30vh; /* Adjust height for large devices */
+			padding: 30px; /* Adjust padding for large devices */
+	}
+}
+
+.buttons.stacked {
+	list-style: none; /* Remove list bullets */
+	padding: 0; /* Remove default padding */
+}
+
+.buttons.stacked li {
+	margin-bottom: 0; /* Remove margin between buttons */
+}
+.image-container {
+	text-align: left; /* Center the image by default */
+}
+
+.image-container img {
+	max-width: 45%; /* Ensure the image does not exceed its container's width */
+	height: auto; /* Ensure the aspect ratio is maintained */
+}
+
+/* Media query for desktop */
+@media screen and (min-width: 768px) {
+	.image-container img {
+			width: 80%; /* Set the image width to 80% of its container on desktop */
+			margin: 0 auto; /* Center the image horizontally on desktop */
+	}
+}
+
+/* Media query for mobile */
+@media screen and (max-width: 767px) {
+	.image-container {
+			text-align: center; /* Center the container itself on mobile */
+	}
+	.image-container img {
+			width: 50%; /* Set the image width to 50% of its container on mobile */
+			margin: 0 auto; /* Center the image horizontally on mobile */
+	}
+}
+.col-4.col-12-narrower.red section {
+		background-image: url('../../character/greenSplat.png');
+		background-size: cover; /* Ensures the background image covers the entire section */
+		background-position: center; /* Centers the background image within the section */
+		padding: 20px; /* Add padding to create space around the content */
+}
+
+.col-4.col-12-narrower.green section {
+		background-image: url('../../character/redSplat.png');
+		background-size: cover; /* Ensures the background image covers the entire section */
+		background-position: center; /* Centers the background image within the section */
+		padding: 20px; /* Add padding to create space around the content */
+}
+.col-4.col-12-narrower.purple section {
+		background-image: url('../../character/purpSplat.png');
+		background-size: cover; /* Ensures the background image covers the entire section */
+		background-position: center; /* Centers the background image within the section */
+		padding: 20px; /* Add padding to create space around the content */
+}
+
+
+/* Media query for mobile */
+@media screen and (max-width: 767px) {
+		.col-4.col-12-narrower.red section,
+		.col-4.col-12-narrower.green section,
+		.col-4.col-12-narrower.purple section {
+	
+				padding: 50px; 
+		}
+}
+.custom-image-container {
+	display: flex;
+	justify-content: center; /* Center the block horizontally */
+	align-items: center; /* Center the block vertically */
+	
+}
+
+.custom-image-container img {
+	max-width: 25%; /* Adjust the maximum width as needed */
+	height: auto; /* Maintain aspect ratio */
+}
+
+.custom-image-container img:nth-child(even) {
+	transform: rotate(20deg);
+}
+
+.custom-image-container img:nth-child(odd) {
+	transform: rotate(-20deg);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+	.custom-image-container {
+		flex-direction: column; /* Stack images vertically on smaller screens */
+		align-items: center; /* Center images horizontally */
+	}
+	.custom-image-container img {
+		max-width: 60%; /* Adjust the maximum width as needed */
+		height: auto; /* Maintain aspect ratio */
+	}
 }
