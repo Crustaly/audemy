@@ -1,15 +1,9 @@
-
-
-
-
 function changeButtonBorder(buttonId) {
   buttonId.classList.add('custom-border');
 }
 function removeButtonBorder(buttonId) {
   buttonId.classList.remove('custom-border');
 }
-
-
 
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
@@ -207,9 +201,6 @@ function appear(buttonId) {
 }
 
 async function runFruitFrenzy() {
-
-
-  console.log("here");
   appear("fruitFrenzyScreen");
   await playAudio("audioFiles/fruitFrenzy/fruitIntro.mp3", 18);
   roundCount = 5;
@@ -225,8 +216,6 @@ async function runFruitFrenzy() {
     await fruitMathQuestion();
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
-
-
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
     }
@@ -548,7 +537,6 @@ async function runSpellSafari() {
     await spellQuestion();
     if (correct) {
       await playAudio("audioFiles/generalGame/ding.mp3", .5);
-
 
       await playAudio("audioFiles/generalGame/correct.mp3", 1);
       right++;
@@ -1322,105 +1310,3 @@ const shapes = [
 
 
 ];
-/*
-const buttonsGrid = [
-    [document.getElementById('fruitFrenzy'), document.getElementById('carCounting'), document.getElementById('shapeParade')],
-    [document.getElementById('spellingSafari'), document.getElementById('animalSort'), document.getElementById('storyBuilder')],
-
-];
-
-
-// Create an array of corresponding audio elements
-const audioGrid = [
-    [document.getElementById('fruitFrenzyAudio'), document.getElementById('carCountingAudio'), document.getElementById('shapeParadeAudio')],
-    [document.getElementById('spellingSafariAudio'), document.getElementById('animalSortAudio'), document.getElementById('storyBuilderAudio')],
-
-];
-
-
-
-
-let currentRow = 0;
-let currentCol = 0;
-
-
-// Initialize current audio
-let currentAudio = null;
-let  newButton = buttonsGrid[0][0];
-changeButtonBorder(newButton);
-// Function to stop current audio and play new audio
-
-
-function playNewAudio(newAudio) {
-  if(menu){
-    // Stop current audio if playing
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
-
-
-    // Play new audio and set it as the current audio
-    newAudio.play();
-    currentAudio = newAudio;
-  }
-}
-
-
-// Add event listener for keydown events
-document.addEventListener('keydown', (event) => {
-    // Adjust row and column indices based on the key pressed
-  if (event.code === 'Space') {
-    console.log(clickable + " in function");
-    if (clickable) {
-        recognition.start();
-        console.log('Ready to receive an answer.');
-    }
-
-    inGame(newButton.id);
-    console.log("Space key was pressed and running inGame function");
-    event.preventDefault();
-  } 
-  else {
-    // Handle other key events as needed
-    switch (event.key) {
-      case 'ArrowUp':
-          currentRow = (currentRow > 0) ? currentRow - 1 : buttonsGrid.length - 1;
-          break;
-      case 'ArrowDown':
-          currentRow = (currentRow < buttonsGrid.length - 1) ? currentRow + 1 : 0;
-          break;
-      case 'ArrowLeft':
-          currentCol = (currentCol > 0) ? currentCol - 1 : buttonsGrid[currentRow].length - 1;
-          break;
-      case 'ArrowRight':
-          currentCol = (currentCol < buttonsGrid[currentRow].length - 1) ? currentCol + 1 : 0;
-          break;
-    }
-    // Set focus to the button at the new row and column
-  removeButtonBorder(newButton);
-    newButton = buttonsGrid[currentRow][currentCol];
-    newButton.focus();
-  changeButtonBorder(newButton);
-
-
-
-
-    // Play new audio associated with the new button
-    const newAudio = audioGrid[currentRow][currentCol];
-    playNewAudio(newAudio);
-  changeButtonBorder(audioGrid[currentRow][currentCol]);
-
-
-
-
-    // Prevent default action (e.g., scrolling)
-    event.preventDefault();
-  }
-});
-
-
-// Initialize focus and play sound for the first button
-buttonsGrid[currentRow][currentCol].focus();
-playNewAudio(audioGrid[currentRow][currentCol]);
-*/
